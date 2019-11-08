@@ -14,3 +14,7 @@ spec:
       containers:
         - name: ui
           image: hobbyfarm/ui:0.2.0
+          env:
+            - name: HF_SERVER
+              value: gargantua
+
