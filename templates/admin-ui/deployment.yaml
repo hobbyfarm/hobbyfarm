@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-ui
+spec:
+  selector:
+    matchLabels:
+      component: admin-ui
+  template:
+    metadata:
+      labels:
+        component: admin-ui
+    spec:
+      containers:
+        - name: admin-ui
+          image: hobbyfarm/admin-ui:0.0.12

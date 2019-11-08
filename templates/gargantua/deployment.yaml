@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gargantua
+spec:
+  selector:
+    matchLabels:
+      component: gargantua
+  template:
+    metadata:
+      labels:
+        component: gargantua
+    spec:
+      containers:
+        - name: gargantua
+          image: hobbyfarm/gargantua:10282019
