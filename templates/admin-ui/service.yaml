@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: admin-ui
 spec:
+  selector:
+    component: admin-ui
   ports:
     - name: http
       port: 80

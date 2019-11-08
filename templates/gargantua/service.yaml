@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: gargantua
 spec:
+  selector:
+    component: gargantua
   ports:
     - name: http
       port: 80
