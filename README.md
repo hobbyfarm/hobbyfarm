@@ -19,3 +19,11 @@ backend:
 
 Then we can open `ui` in our browser and register a new user.
 The admin interface will be available at `admin-ui`.
+
+Find your user (`kubectl get users`) and edit the manifest to set `admin: true`.
+
+
+### Seed Resources
+
+Set `seed.enabled: true` to generate example resources.
+The access code for the example scenario is `example`.

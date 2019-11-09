@@ -7,3 +7,7 @@ backend:
 # deploy https://github.com/rancher/terraform-controller
 terraform:
   enabled: true
+
+# seed with some example data
+seed:
+  enabled: true

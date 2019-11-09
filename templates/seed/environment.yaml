@@ -1,0 +1,22 @@
+{{ if .Values.seed.enabled }}
+apiVersion: hobbyfarm.io/v1
+kind: Environment
+metadata:
+  name: example-environment
+spec:
+  display_name: "Example Environment"
+  provider: ranchervm
+  template_mapping:
+    ubuntu1604-docker1:
+      image: vm-ubuntu-1604-final
+      module: provision-rvm
+      #executor_image: "hobbyfarm/terraform-controller:07162019"
+      executor_image: "oats87/terraform-controller-executor:hfv1"
+  ip_translation_map:
+    172.17.2: "184.105.214"
+status:
+  capacity:
+    cpu: 80
+    memory: 614400
+    storage: 500
+{{ end }}

@@ -1,0 +1,10 @@
+{{ if .Values.seed.enabled }}
+apiVersion: terraformcontroller.cattle.io/v1
+kind: Module
+metadata:
+  name: provision-rvm
+  namespace: {{ .Release.Namespace }}
+spec:
+  git:
+    url: https://github.com/hobbyfarm/tf-module-rvm
+{{ end }}

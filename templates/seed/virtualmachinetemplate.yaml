@@ -1,0 +1,14 @@
+{{ if .Values.seed.enabled }}
+apiVersion: hobbyfarm.io/v1
+kind: VirtualMachineTemplate
+metadata:
+  name: ubuntu1604-docker1
+spec:
+  id: ubuntu1604-docker1
+  name: ubuntu1604-docker1
+  image: ubuntu1604
+  resources:
+    cpu: 1
+    memory: 4096
+    storage: 8
+{{ end }}
