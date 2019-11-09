@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: gargantua
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     component: gargantua

@@ -2,7 +2,9 @@
 
 Install with Helm!
 
-    helm install --name hf .
+    helm install --name hf --namespace hobbyfarm .
+
+**NOTE**: currently, the namespace _must_ be `hobbyfarm`.
 
 
 ## Local Development

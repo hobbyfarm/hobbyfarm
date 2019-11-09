@@ -3,6 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: gargantua
+  namespace: {{ .Release.Namespace }}
 spec:
   tls:
     - hosts:
