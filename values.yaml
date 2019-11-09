@@ -1,0 +1,8 @@
+ingress:
+  enabled: false
+
+backend:
+  hostname: gargantua
+
+seed:
+  enabled: true

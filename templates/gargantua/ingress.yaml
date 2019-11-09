@@ -1,0 +1,19 @@
+{{ if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gargantua
+spec:
+  tls:
+    - hosts:
+      - {{ .Values.backend.hostname }}
+      secretName: tls-secret
+  rules:
+    - host: {{ .Values.backend.hostname }}
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: gargantua
+            servicePort: 80
+{{- end -}}

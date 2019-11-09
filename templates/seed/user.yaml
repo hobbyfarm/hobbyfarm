@@ -1,0 +1,12 @@
+{{ if .Values.seed.enabled }}
+apiVersion: hobbyfarm.io/v1
+kind: User
+metadata:
+  name: admin
+spec:
+  access_codes:
+  - test
+  email: admin@example.com
+  id: admin
+  password: $2y$10$niyH6wS3gDEG/k8yCfbu7OzUVULt9JgUdt5BAy./0DxMVqkm2Z5iK
+{{ end }}

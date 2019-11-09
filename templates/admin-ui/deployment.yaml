@@ -16,4 +16,4 @@ spec:
           image: hobbyfarm/admin-ui:0.0.12
           env:
             - name: HF_SERVER
-              value: gargantua
+              value: {{ .Values.backend.hostname }}
