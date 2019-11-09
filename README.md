@@ -14,11 +14,11 @@ This allows us to set the backend hostname to the service name.
 
 ```
 backend:
-  hostname: gargantua
+  hostname: gargantua.hobbyfarm
 ```
 
-Then we can open `ui` in our browser and register a new user.
-The admin interface will be available at `admin-ui`.
+Then we can open `ui.hobbyfarm` in our browser and register a new user.
+The admin interface will be available at `admin-ui.hobbyfarm`.
 
 Find your user (`kubectl get users`) and edit the manifest to set `admin: true`.
 

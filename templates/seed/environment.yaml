@@ -12,6 +12,11 @@ spec:
       module: provision-rvm
       #executor_image: "hobbyfarm/terraform-controller:07162019"
       executor_image: "oats87/terraform-controller-executor:hfv1"
+  environment_specifics:
+    endpoint: "http://backend.ranchervm-system"
+    secret_key: "super-secret"
+    access_key: "access-now"
+    #cred_secret:
   ip_translation_map:
     172.17.2: "184.105.214"
 status:

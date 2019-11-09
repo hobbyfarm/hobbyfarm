@@ -2,12 +2,18 @@ ingress:
   enabled: false
 
 backend:
-  hostname: gargantua
-
-# deploy https://github.com/rancher/terraform-controller
-terraform:
-  enabled: true
+  hostname: gargantua.hobbyfarm
 
 # seed with some example data
 seed:
   enabled: true
+
+# https://github.com/rancher/terraform-controller
+terraform:
+  enabled: true
+
+# https://github.com/hobbyfarm/vm
+ranchervm:
+  enabled: true
+  nic: "wlp59s0"
+  bridge: "br0"

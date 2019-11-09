@@ -9,6 +9,6 @@ spec:
   image: ubuntu1604
   resources:
     cpu: 1
-    memory: 4096
-    storage: 8
+    memory: 1024
+    storage: 1
 {{ end }}
