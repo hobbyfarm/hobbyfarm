@@ -15,6 +15,5 @@ backend:
   hostname: gargantua
 ```
 
-Then we can open `ui` or `admin-ui` in our browser.
-
-If `seed.enabled` is `true`, a default user account will be created with the email `admin@example.com` and the password is `password`.
+Then we can open `ui` in our browser and register a new user.
+The admin interface will be available at `admin-ui`.

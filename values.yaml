@@ -3,6 +3,3 @@ ingress:
 
 backend:
   hostname: gargantua
-
-seed:
-  enabled: true
