@@ -3,3 +3,7 @@ ingress:
 
 backend:
   hostname: gargantua
+
+# deploy https://github.com/rancher/terraform-controller
+terraform:
+  enabled: true

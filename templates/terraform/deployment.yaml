@@ -1,0 +1,25 @@
+{{ if .Values.terraform.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: terraform-controller
+  name: terraform-controller
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: terraform-controller
+  template:
+    metadata:
+      labels:
+        run: terraform-controller
+        version: v0.0.3
+    spec:
+      containers:
+        - image: rancher/terraform-controller:v0.0.10-alpha1
+          name: terraform-controller
+          command: ["terraform-controller"]
+          args: ["--namespace", "{{ .Release.Namespace }}"]
+{{ end }}
