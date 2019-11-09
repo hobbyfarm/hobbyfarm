@@ -15,5 +15,5 @@ terraform:
 # https://github.com/hobbyfarm/vm
 ranchervm:
   enabled: true
-  nic: "wlp59s0"
+  nic: "eth0"
   bridge: "br0"

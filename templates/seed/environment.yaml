@@ -13,7 +13,7 @@ spec:
       #executor_image: "hobbyfarm/terraform-controller:07162019"
       executor_image: "oats87/terraform-controller-executor:hfv1"
   environment_specifics:
-    endpoint: "http://backend.ranchervm-system"
+    endpoint: "http://backend.ranchervm-system:9500"
     secret_key: "super-secret"
     access_key: "access-now"
     #cred_secret:

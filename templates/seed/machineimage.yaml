@@ -1,0 +1,9 @@
+{{ if and .Values.ranchervm.enabled .Values.seed.enabled }}
+apiVersion: vm.rancher.io/v1alpha1
+kind: MachineImage
+metadata:
+  name: vm-ubuntu-1604-final
+spec:
+  docker_image: rancher/vm-ubuntu:16.04.5-server-amd64
+  size_gib: 1
+{{ end }}

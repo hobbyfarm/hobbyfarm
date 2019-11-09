@@ -4,6 +4,8 @@ kind: CustomResourceDefinition
 metadata:
   labels:
     ranchervm-system: VirtualMachine
+  annotations:
+    helm.sh/hook: crd-install
   name: virtualmachines.vm.rancher.io
 spec:
   group: vm.rancher.io
@@ -23,6 +25,8 @@ kind: CustomResourceDefinition
 metadata:
   labels:
     ranchervm-system: ARPTable
+  annotations:
+    helm.sh/hook: crd-install
   name: arptables.vm.rancher.io
 spec:
   group: vm.rancher.io
@@ -42,6 +46,8 @@ kind: CustomResourceDefinition
 metadata:
   labels:
     ranchervm-system: Credential
+  annotations:
+    helm.sh/hook: crd-install
   name: credentials.vm.rancher.io
 spec:
   group: vm.rancher.io
@@ -61,6 +67,8 @@ kind: CustomResourceDefinition
 metadata:
   labels:
     ranchervm-system: Setting
+  annotations:
+    helm.sh/hook: crd-install
   name: settings.vm.rancher.io
 spec:
   group: vm.rancher.io
@@ -77,6 +85,8 @@ kind: CustomResourceDefinition
 metadata:
   labels:
     ranchervm-system: MachineImage
+  annotations:
+    helm.sh/hook: crd-install
   name: machineimages.vm.rancher.io
 spec:
   group: vm.rancher.io
