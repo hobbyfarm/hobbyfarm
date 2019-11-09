@@ -3,6 +3,8 @@ kind: CustomResourceDefinition
 metadata:
   name: modules.terraformcontroller.cattle.io
   namespace: terraform-controller
+  annotations:
+    helm.sh/hook: crd-install
 spec:
   group: terraformcontroller.cattle.io
   version: v1
@@ -17,6 +19,8 @@ kind: CustomResourceDefinition
 metadata:
   name: states.terraformcontroller.cattle.io
   namespace: terraform-controller
+  annotations:
+    helm.sh/hook: crd-install
 spec:
   group: terraformcontroller.cattle.io
   version: v1
@@ -31,6 +35,8 @@ kind: CustomResourceDefinition
 metadata:
   name: executions.terraformcontroller.cattle.io
   namespace: terraform-controller
+  annotations:
+    helm.sh/hook: crd-install
 spec:
   group: terraformcontroller.cattle.io
   version: v1
