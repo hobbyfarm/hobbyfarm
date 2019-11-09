@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: gargantua
-          image: hobbyfarm/gargantua:10282019
+          image: hobbyfarm/gargantua:11072019
