@@ -6,9 +6,13 @@ metadata:
 spec:
   id: ubuntu1604-docker1
   name: ubuntu1604-docker1
-  image: ubuntu1604
+  image: ubuntu-16.04
   resources:
     cpu: 1
     memory: 1024
+    {{ if eq .Values.terraform.provider "aws" }}
+    storage: 8
+    {{ else if eq .Values.terraform.provider "ranchervm" }}
     storage: 1
+    {{ end }}
 {{ end }}

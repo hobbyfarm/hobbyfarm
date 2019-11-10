@@ -8,7 +8,7 @@ spec:
   end_time: {{ now | date_modify "+2h" | date "Mon Jan 2 15:04:05 MST 2006" }}
   required_vms:
     example-environment:
-      ubuntu1604-docker1: 1
+      ubuntu1604-docker1: 2
   access_code: example
   scenarios:
     - example-scenario

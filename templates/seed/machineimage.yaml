@@ -1,9 +1,10 @@
-{{ if and .Values.ranchervm.enabled .Values.seed.enabled }}
+{{ if and .Values.seed.enabled (eq .Values.terraform.provider "ranchervm") }}
 apiVersion: vm.rancher.io/v1alpha1
 kind: MachineImage
 metadata:
-  name: vm-ubuntu-1604-final
+  # name: vm-ubuntu-1604-final
+  name: example-image
 spec:
-  docker_image: rancher/vm-ubuntu:16.04.5-server-amd64
+  docker_image: {{ .Values.terraform.ranchervm.image }}
   size_gib: 1
 {{ end }}

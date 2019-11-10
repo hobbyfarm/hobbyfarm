@@ -5,23 +5,21 @@ metadata:
   name: example-environment
 spec:
   display_name: "Example Environment"
-  provider: ranchervm
+  provider: {{ .Values.terraform.provider }}
   template_mapping:
     ubuntu1604-docker1:
-      image: vm-ubuntu-1604-final
-      module: provision-rvm
-      #executor_image: "hobbyfarm/terraform-controller:07162019"
-      executor_image: "oats87/terraform-controller-executor:hfv1"
+      image: {{ (index .Values.terraform .Values.terraform.provider).image }}
+
   environment_specifics:
-    endpoint: "http://backend.ranchervm-system:9500"
-    secret_key: "super-secret"
-    access_key: "access-now"
-    #cred_secret:
+    module: tf-module
+    executor_image: {{ .Values.terraform.executor_image }}
+
+    {{ if eq .Values.terraform.provider "ranchervm" }}
+{{ toYaml .Values.terraform.ranchervm | indent 4 -}}
+    {{ else if eq .Values.terraform.provider "aws" }}
+{{ toYaml .Values.terraform.aws | indent 4 -}}
+    {{ end }}
+
   ip_translation_map:
     172.17.2: "184.105.214"
-status:
-  capacity:
-    cpu: 80
-    memory: 614400
-    storage: 500
 {{ end }}

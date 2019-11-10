@@ -38,5 +38,5 @@ spec:
     targetPort: 8000
   selector:
     app: frontend
-  type: LoadBalancer
+  #type: LoadBalancer
 {{ end }}

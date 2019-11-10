@@ -2,9 +2,17 @@
 apiVersion: terraformcontroller.cattle.io/v1
 kind: Module
 metadata:
-  name: provision-rvm
+  name: tf-module
   namespace: {{ .Release.Namespace }}
 spec:
   git:
+    {{ if eq .Values.terraform.provider "ranchervm" }}
     url: https://github.com/hobbyfarm/tf-module-rvm
+    {{ else if eq .Values.terraform.provider "aws" }}
+    url: https://github.com/hobbyfarm/tf-module-aws
+    {{ else if eq .Values.terraform.provider "vsphere" }}
+    url: https://github.com/hobbyfarm/tf-module-vsphere
+    {{ else if eq .Values.terraform.provider "do" }}
+    url: https://github.com/dramich/domodule
+    {{ end }}
 {{ end }}
