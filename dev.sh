@@ -26,7 +26,10 @@ subjects:
 EOF
 helm init --service-account tiller --history-max 200 --wait
 
-helm install --name hf --namespace hobbyfarm -t values-ignored.yaml .
+helm install --name hf --namespace hobbyfarm -f values-ignored.yaml .
+
+
+kubectl wait -n hobbyfarm --for='condition=ready' pods --all --timeout=300s
 
 # this can't be executed until all pods attached to services are running
-#sudo -E kubefwd services -n hobbyfarm -n ranchervm-system
+sudo -E kubefwd services -n hobbyfarm

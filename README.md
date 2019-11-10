@@ -33,3 +33,13 @@ Find your user (`kubectl get users`) and edit the manifest to set `admin: true`.
 
 Set `seed.enabled: true` to generate example resources.
 The access code for the example scenario is `example`.
+
+### Teardown
+
+Make sure there aren't any running VMs that would be orphaned in a cloud provider.
+
+    kubectl delete virtualmachines.hobbyfarm.io --all
+
+Then delete the cluster.
+
+    k3d delete
