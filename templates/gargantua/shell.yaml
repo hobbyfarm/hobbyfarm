@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gargantua-shell
+  labels:
+    app: gargantua-shell
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gargantua-shell
+  template:
+    metadata:
+      labels:
+        app: gargantua-shell
+    spec:
+      containers:
+      - name: gargantua
+        image: hobbyfarm/gargantua:11072019
+        command:
+        - /usr/local/bin/gargantua
+        - -alsologtostderr
+        - -v=9
+        - -shellserver
+        - -disablecontrollers
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shell
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: gargantua-shell
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
+      targetPort: 80

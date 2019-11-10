@@ -20,6 +20,7 @@ spec:
 {{ toYaml .Values.terraform.aws | indent 4 -}}
     {{ end }}
 
+  ws_endpoint: "shell"
   ip_translation_map:
     172.17.2: "184.105.214"
 {{ end }}
