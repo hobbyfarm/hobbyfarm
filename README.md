@@ -9,16 +9,22 @@ Install with Helm!
 
 ## Local Development
 
+hobbyfarm is known to work with [k3d](https://github.com/rancher/k3d);
+execute the `./dev.sh` script to run a local cluster.
+
 Using a tool such as [kubefwd](https://kubefwd.com/), we can access services by their internal DNS name.
+
+    sudo -E kubefwd services -n hobbyfarm
+
 This allows us to set the backend hostname to the service name.
 
-```
+```yaml
 backend:
   hostname: gargantua.hobbyfarm
 ```
 
 Then we can open `ui.hobbyfarm` in our browser and register a new user.
-The admin interface will be available at `admin-ui.hobbyfarm` and the VM management interface will be at `frontend.ranchervm-system`.
+The admin interface will be available at `admin-ui.hobbyfarm`.
 
 Find your user (`kubectl get users`) and edit the manifest to set `admin: true`.
 
