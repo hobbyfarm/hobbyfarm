@@ -14,18 +14,7 @@ If using a cloud provider for managing scenario VMs, credentials must be provide
 ## Local Development
 
 hobbyfarm is known to work with [k3d](https://github.com/rancher/k3d);
-execute the `./dev.sh` script to run a local cluster.
-
-Using a tool such as [kubefwd](https://kubefwd.com/), we can access services by their internal DNS name.
-
-    sudo -E kubefwd services -n hobbyfarm
-
-This allows us to set the backend hostname to the service name.
-
-```yaml
-backend:
-  hostname: gargantua.hobbyfarm
-```
+execute the `./dev.sh` script to run a local cluster (assumes you have [kubefwd](https://kubefwd.com) installed).
 
 Then we can open `ui.hobbyfarm` in our browser and register a new user.
 The admin interface will be available at `admin-ui.hobbyfarm`.
