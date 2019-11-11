@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: ui
-          image: hobbyfarm/ui:0.2.0
+          # image: hobbyfarm/ui:0.2.0
+          image: brytonhall/ui:latest
           env:
             - name: HF_SERVER
               value: {{ .Values.backend.hostname }}
