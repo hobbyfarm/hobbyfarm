@@ -6,6 +6,10 @@ Install with Helm!
 
 **NOTE**: currently, the namespace _must_ be `hobbyfarm`.
 
+## VM Provider Auth
+
+If using a cloud provider for managing scenario VMs, credentials must be provided in `values.yaml`.
+
 
 ## Local Development
 
@@ -33,6 +37,7 @@ Find your user (`kubectl get users`) and edit the manifest to set `admin: true`.
 
 Set `seed.enabled: true` to generate example resources.
 The access code for the example scenario is `example`.
+
 
 ### Teardown
 
