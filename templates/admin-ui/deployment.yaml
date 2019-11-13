@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: admin-ui
-          # image: hobbyfarm/admin-ui:0.0.12
-          image: brytonhall/admin-ui:latest
+          image: {{ $.Values.admin-ui.image }}
           env:
             - name: HF_SERVER
-              value: {{ .Values.backend.hostname }}
+              value: {{ $.Values.ingress.hostnames.backend | default (print "gargantua." $.Release.Namespace) | quote }}

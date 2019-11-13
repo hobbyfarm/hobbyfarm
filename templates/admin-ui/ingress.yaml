@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: gargantua
+  name: admin-ui
   namespace: {{ .Release.Namespace }}
   annotations:
   {{- range $key, $value := .Values.ingress.annotations }}
@@ -10,15 +10,15 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ $.Values.ingress.hostnames.backend }}
+  - host: {{ $.Values.ingress.hostnames.admin }}
     http:
       paths:
       - backend:
-          serviceName: gargantua
+          serviceName: admin-ui
           servicePort: 80
 {{ if $.Values.ingress.tls.enabled }}
   tls:
   - hosts:
-    - {{ $.Values.ingress.hostnames.backend }}
+    - {{ $.Values.ingress.hostnames.admin }}
 {{ end }}
 {{ end }}

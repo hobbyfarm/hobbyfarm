@@ -1,12 +1,24 @@
+admin-ui:
+  image: hobbyfarm/admin-ui:0.0.12
+ui:
+  image: hobbyfarm/ui:0.2.0
 ingress:
   enabled: false
-
-backend:
-  hostname: gargantua.hobbyfarm
+  annotations: {}
+  tls:
+    enabled: true
+  hostnames:
+    # ui: example.com
+    # admin: admin.example.com
+    # backend: hf.example.com
+    # shell: shell.example.com
+    ranchervm: {}
+      # frontend: vm.example.com
+      # backend: vmapi.example.com
 
 # seed with some example data
 seed:
-  enabled: true
+  enabled: false
 
 # https://github.com/rancher/terraform-controller
 terraform:
@@ -19,15 +31,17 @@ terraform:
   ranchervm:
     image: rancher/vm-ubuntu:16.04.5-server-amd64
     endpoint: "http://backend.ranchervm-system:9500"
+    access_key: ''
+    secret_key: ''
 
   aws:
     image: ami-04763b3055de4860b
     region: us-east-1
 
-    access_key:
-    secret_key:
-    subnet:
-    vpc_security_group_id:
+    # access_key:
+    # secret_key:
+    # subnet:
+    # vpc_security_group_id:
 
 # https://github.com/hobbyfarm/vm
 ranchervm:

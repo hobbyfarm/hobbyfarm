@@ -39,4 +39,29 @@ spec:
   selector:
     app: frontend
   #type: LoadBalancer
+---
+{{ if $.Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: frontend
+  namespace: ranchervm-system
+  annotations:
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  rules:
+  - host: {{ $.Values.ingress.hostnames.ranchervm.frontend }}
+    http:
+      paths:
+      - backend:
+          serviceName: frontend
+          servicePort: 80
+{{ if $.Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ $.Values.ingress.hostnames.ranchervm.frontend }}
+{{ end }}
+{{ end }}
 {{ end }}
