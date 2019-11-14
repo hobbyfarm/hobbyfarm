@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: admin-ui
-          image: {{ $.Values.admin-ui.image }}
+          image: {{ $.Values.admin.image }}
           env:
             - name: HF_SERVER
               value: {{ $.Values.ingress.hostnames.backend | default (print "gargantua." $.Release.Namespace) | quote }}
