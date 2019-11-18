@@ -17,4 +17,8 @@ spec:
           image: {{ $.Values.ui.image }}
           env:
             - name: HF_SERVER
-              value: {{ $.Values.ingress.hostnames.backend | default (print "gargantua." $.Release.Namespace) | quote }}
+              {{ if $.Values.ingress.enabled }}
+              value: {{ print "https://" $.Values.ingress.hostnames.backend | quote }}
+              {{ else }}
+              value: {{ print "http://gargantua." $.Release.Namespace | quote }}
+              {{ end }}

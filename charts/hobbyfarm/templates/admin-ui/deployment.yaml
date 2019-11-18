@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: admin-ui
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Release.Namespace }}
 spec:
   selector:
     matchLabels:
@@ -17,4 +17,8 @@ spec:
           image: {{ $.Values.admin.image }}
           env:
             - name: HF_SERVER
-              value: {{ $.Values.ingress.hostnames.backend | default (print "gargantua." $.Release.Namespace) | quote }}
+              {{ if $.Values.ingress.enabled }}
+              value: {{ print "https://" $.Values.ingress.hostnames.backend | quote }}
+              {{ else }}
+              value: {{ print "http://gargantua." $.Release.Namespace | quote }}
+              {{ end }}
