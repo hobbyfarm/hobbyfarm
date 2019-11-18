@@ -1,8 +1,8 @@
 # HobbyFarm Helm Chart
 
-Install with Helm!
+Install with Helm (v3, of course)!
 
-    helm install --name hf --namespace hobbyfarm .
+    helm install hf . --namespace hobbyfarm
 
 **NOTE**: currently, the namespace _must_ be `hobbyfarm`.
 
