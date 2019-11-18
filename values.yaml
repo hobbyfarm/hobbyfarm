@@ -2,6 +2,9 @@ admin:
   image: hobbyfarm/admin-ui:0.0.12
 ui:
   image: hobbyfarm/ui:0.2.0
+gargantua:
+  image: hobbyfarm/gargantua:11072019
+
 ingress:
   enabled: false
   annotations: {}
