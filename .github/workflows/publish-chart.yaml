@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/Chart.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: check if version was bumped
+      run: git diff HEAD~1 chart/hobbyfarm/Chart.yaml | grep 'version:'
+    - name: package and release charts
+      run: |
+        OWNER=${GITHUB_REPOSITORY%%/*}
+        REPO=${GITHUB_REPOSITORY#*/}
+
+        docker run -v $PWD:/app alpine/helm:3.0.0 package /app/charts/hobbyfarm -d /app/dist
+        # CR_TOKEN must be defined in the environment
+        # brytonhall/chart-releaser is being used until the upstream includes ca-certificates in their image
+        docker run -v $PWD:/app brytonhall/chart-releaser cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist
+        docker run -v $PWD:/app brytonhall/chart-releaser cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
