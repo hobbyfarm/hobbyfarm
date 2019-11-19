@@ -1,6 +1,7 @@
 apiVersion: v2
 name: hobbyfarm
 version: 0.0.1
+description: interactive coding platform in a browser
 
 sources:
   - https://github.com/hobbyfarm
