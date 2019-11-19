@@ -8,8 +8,30 @@ Install with Helm (v3, of course)!
 
 ## VM Provider Auth
 
-If using a cloud provider for managing scenario VMs, credentials must be provided in `values.yaml`.
+If using a cloud provider for managing scenario VMs, credentials must be provided.
 
+### AWS
+
+```yaml
+terraform:
+  aws:
+    access_key:
+    secret_key:
+    subnet:
+    vpc_security_group_id:
+```
+
+### GCP
+
+```yaml
+terraform:
+  google:
+    credentials: | 
+    {
+    "type": "service_account",
+    . . .
+    }
+```
 
 ## Local Development
 
@@ -37,4 +59,3 @@ Make sure there aren't any running VMs that would be orphaned in a cloud provide
 Then delete the cluster.
 
     k3d delete
-

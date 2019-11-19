@@ -6,15 +6,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   git:
-    {{ if eq .Values.terraform.provider "ranchervm" }}
-    url: https://github.com/hobbyfarm/tf-module-rvm
-    {{ else if eq .Values.terraform.provider "aws" }}
-    url: https://github.com/hobbyfarm/tf-module-aws
-    {{ else if eq .Values.terraform.provider "vsphere" }}
-    url: https://github.com/hobbyfarm/tf-module-vsphere
-    {{ else if eq .Values.terraform.provider "do" }}
-    url: https://github.com/dramich/domodule
-    {{ else if $.Values.terraform.module }}
-    url: {{ $.Values.terraform.module }}
-    {{ end }}
+    url: {{ (index $.Values.terraform $.Values.terraform.provider).module }}
 {{ end }}

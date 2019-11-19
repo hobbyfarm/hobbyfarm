@@ -28,26 +28,34 @@ terraform:
   enabled: true
   executor_image: "oats87/terraform-controller-executor:hfv1"
 
-  # module is the url of a git repo with a compatible terraform module
-  #module: https://github.com/hobbyfarm/tf-module-
-
-  # one of: ranchervm, aws, vsphere (untested), do (untested)
+  # one of: ranchervm (broken), google, aws, vsphere (untested), do (untested)
   provider: aws
 
   ranchervm:
+    module: https://github.com/hobbyfarm/tf-module-rvm
     image: rancher/vm-ubuntu:16.04.5-server-amd64
     endpoint: "http://backend.ranchervm-system:9500"
     access_key: ''
     secret_key: ''
 
+  google:
+    module: https://github.com/boxboat/tf-module-google
+    # credentials: |
+
   aws:
+    module: https://github.com/hobbyfarm/tf-module-aws
     image: ami-04763b3055de4860b
     region: us-east-1
-
     # access_key:
     # secret_key:
     # subnet:
     # vpc_security_group_id:
+
+  vsphere:
+    module: https://github.com/hobbyfarm/tf-module-vsphere
+
+  do:
+    module: https://github.com/dramich/domodule
 
 # https://github.com/hobbyfarm/vm
 ranchervm:
