@@ -13,6 +13,7 @@ jobs:
     steps:
     # actions/checkout@v1 must be included to checkout the repo
     - uses: actions/checkout@v1
+
     # - name: check if version was bumped
     #   run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
     - name: package and release charts
@@ -25,7 +26,13 @@ jobs:
         docker run -v $PWD:/app brytonhall/chart-releaser cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
         docker run -v $PWD:/app brytonhall/chart-releaser cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
 
-        # commit the generated index.yaml file
-        git add docs/index.yaml
-        git commit -m "update index.yaml"
-        git push
+    - name: commit updated index.yaml
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "update index.yaml" -a
+
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
