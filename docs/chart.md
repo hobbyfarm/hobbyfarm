@@ -23,7 +23,7 @@ terraform:
 
 ### GCP
 
-Create a [service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) in json format: https://console.cloud.google.com/apis/credentials/serviceaccountkey
+Create a [service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) in json format: [console](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
 
 ```yaml
 terraform:
