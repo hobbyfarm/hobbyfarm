@@ -16,6 +16,7 @@ jobs:
 
     # - name: check if version was bumped
     #   run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
+
     - name: package and release charts
       run: |
         OWNER=${GITHUB_REPOSITORY%%/*}
