@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    # paths:
-    #   - '**/Chart.yaml'
+    paths:
+      - '**/Chart.yaml'
 
 jobs:
   build:
@@ -13,8 +13,8 @@ jobs:
     steps:
     # actions/checkout@v1 must be included to checkout the repo
     - uses: actions/checkout@v1
-    # - name: check if version was bumped
-    #   run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
+    - name: check if version was bumped
+      run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
     - name: package and release charts
       run: |
         OWNER=${GITHUB_REPOSITORY%%/*}
