@@ -1,1 +1,2 @@
 dist/
+**/values-ignored.yaml
