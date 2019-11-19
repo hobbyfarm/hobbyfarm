@@ -21,7 +21,11 @@ spec:
     {{ end }}
 
 
-  ws_endpoint: {{ $.Values.ingress.hostnames.shell | default (print "shell." $.Release.Namespace) | quote }}
+  {{ if $.Values.ingress.enabled }}
+  ws_endpoint: {{ $.Values.ingress.hostnames.shell | quote }}
+  {{ else }}
+  ws_endpoint: {{ print "shell." $.Release.Namespace | quote }}
+  {{ end }}
   ip_translation_map:
     172.17.2: "184.105.214"
 {{ end }}
