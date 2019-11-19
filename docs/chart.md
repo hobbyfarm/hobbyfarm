@@ -1,4 +1,4 @@
-# HobbyFarm Helm Chart
+# Hobbyfarm Helm Chart
 
 Install with Helm (v3, of course)!
 
@@ -23,7 +23,7 @@ terraform:
 
 ### GCP
 
-Create a [service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) in json format: [console](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
+Create a [service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) (in json format) from the [Cloud Console](https://console.cloud.google.com/apis/credentials/serviceaccountkey).
 
 ```yaml
 terraform:
