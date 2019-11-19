@@ -3,6 +3,11 @@
 Hobbyfarm is an interactive coding platform that runs in the browser.
 
 
+## install
+
+Install the [chart](chart.md) with Helm.
+
+
 ## syntax
 
 Scenarios are written in Markdown with a few extra bits of syntax.

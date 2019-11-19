@@ -37,3 +37,4 @@ Make sure there aren't any running VMs that would be orphaned in a cloud provide
 Then delete the cluster.
 
     k3d delete
+

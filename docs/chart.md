@@ -1,0 +1,1 @@
+../charts/hobbyfarm/README.md
