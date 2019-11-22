@@ -23,9 +23,8 @@ jobs:
         REPO=${GITHUB_REPOSITORY#*/}
 
         docker run -v $PWD:/app alpine/helm:3.0.0 package /app/charts/hobbyfarm -d /app/dist
-        # brytonhall/chart-releaser is being used until the upstream includes ca-certificates in their image
-        docker run -v $PWD:/app brytonhall/chart-releaser cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
-        docker run -v $PWD:/app brytonhall/chart-releaser cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
+        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
+        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
 
     - name: commit updated index.yaml
       run: |
