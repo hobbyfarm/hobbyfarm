@@ -6,6 +6,7 @@ metadata:
 spec:
   display_name: "Example Environment"
   provider: {{ .Values.terraform.provider }}
+  capacity_mode: count
   template_mapping:
     ubuntu1604-docker1:
       image: {{ (index .Values.terraform .Values.terraform.provider).image }}

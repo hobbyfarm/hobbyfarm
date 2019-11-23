@@ -4,8 +4,8 @@ kind: ScheduledEvent
 metadata:
   name: example-event
 spec:
-  start_time: {{ now | date "Mon Jan 2 15:04:05 MST 2006" }}
-  end_time: {{ now | date_modify "+2h" | date "Mon Jan 2 15:04:05 MST 2006" }}
+  start_time: {{ dateInZone "Mon Jan 2 15:04:05 MST 2006" (now) "UTC" | quote }}
+  end_time: {{ dateInZone "Mon Jan 2 15:04:05 MST 2006" (now | dateModify "+2h") "UTC" | quote }}
   required_vms:
     example-environment:
       ubuntu1604-docker1: 2
