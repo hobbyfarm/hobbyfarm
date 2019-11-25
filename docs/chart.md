@@ -2,7 +2,7 @@
 
 Install with Helm (v3, of course)!
 
-    helm install hf hobbyfarm --repo https://boxboat.github.io/hobbyfarm --namespace hobbyfarm
+    helm install hf hobbyfarm --repo https://hobbyfarm.github.io/hobbyfarm --namespace hobbyfarm
 
 **NOTE**: currently, the namespace _must_ be `hobbyfarm`.
 
@@ -29,10 +29,10 @@ Create a [service account key](https://cloud.google.com/iam/docs/creating-managi
 terraform:
   google:
     credentials: | 
-    {
-    "type": "service_account",
-    . . .
-    }
+      {
+        "type": "service_account",
+        . . .
+      }
 ```
 
 ## Local Development

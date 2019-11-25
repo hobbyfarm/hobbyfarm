@@ -9,7 +9,7 @@ entries:
     sources:
     - https://github.com/hobbyfarm
     urls:
-    - https://github.com/boxboat/hobbyfarm/releases/download/hobbyfarm-0.0.2/hobbyfarm-0.0.2.tgz
+    - https://github.com/hobbyfarm/hobbyfarm/releases/download/hobbyfarm-0.0.2/hobbyfarm-0.0.2.tgz
     version: 0.0.2
   - apiVersion: v2
     created: "2019-11-19T03:19:34.956094183Z"
@@ -19,7 +19,7 @@ entries:
     sources:
     - https://github.com/hobbyfarm
     urls:
-    - https://github.com/boxboat/hobbyfarm/releases/download/hobbyfarm-0.0.1/hobbyfarm-0.0.1.tgz
+    - https://github.com/hobbyfarm/hobbyfarm/releases/download/hobbyfarm-0.0.1/hobbyfarm-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v2
     created: "2019-11-19T01:49:15.918574354Z"
@@ -28,6 +28,6 @@ entries:
     sources:
     - https://github.com/hobbyfarm
     urls:
-    - https://github.com/boxboat/hobbyfarm/releases/download/hobbyfarm-0.0.0/hobbyfarm-0.0.0.tgz
+    - https://github.com/hobbyfarm/hobbyfarm/releases/download/hobbyfarm-0.0.0/hobbyfarm-0.0.0.tgz
     version: 0.0.0
 generated: "2019-11-19T01:49:13.439797744Z"
