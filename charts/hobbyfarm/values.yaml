@@ -3,7 +3,7 @@ admin:
 ui:
   image: hobbyfarm/ui:0.2.0
 gargantua:
-  image: hobbyfarm/gargantua:11072019
+  image: hobbyfarm/gargantua:v0.0.2
 
 ingress:
   enabled: false
@@ -26,7 +26,12 @@ seed:
 # https://github.com/rancher/terraform-controller
 terraform:
   enabled: true
-  executor_image: "oats87/terraform-controller-executor:hfv1"
+  executor:
+    image: oats87/terraform-controller-executor
+    tag: "hfv1"
+  controller:
+    image: hobbyfarm/terraform-controller
+    tag: "12032019"
 
   # one of: ranchervm (broken), google, aws, vsphere (untested), do (untested)
   provider: aws
@@ -61,4 +66,10 @@ terraform:
 ranchervm:
   enabled: false
   nic: "eth0"
-  bridge: "docker0"
+  bridge: "en0"
+  # bridge: "docker0"
+  image:
+    vm: rancher/vm:v0.2.0
+    frontend: rancher/vm-frontend:v0.2.0
+    novnc: rancher/vm-novnc:v0.2.0
+    tools: rancher/vm-tools:v0.2.0

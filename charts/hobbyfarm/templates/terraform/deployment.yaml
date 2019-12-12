@@ -18,7 +18,7 @@ spec:
         version: v0.0.3
     spec:
       containers:
-        - image: rancher/terraform-controller:v0.0.10-alpha1
+        - image: "{{ $.Values.terraform.controller.image }}:{{ $.Values.terraform.controller.tag }}"
           name: terraform-controller
           command: ["terraform-controller"]
           args: ["--namespace", "{{ .Release.Namespace }}"]

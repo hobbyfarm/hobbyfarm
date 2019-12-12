@@ -23,7 +23,7 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: backend
-        image: rancher/vm:v0.2.0
+        image: {{ $.Values.ranchervm.image.vm }}
         imagePullPolicy: Always
         args:
         - -backend

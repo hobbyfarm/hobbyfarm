@@ -1,4 +1,4 @@
-{{ if .Values.ranchervm.enabled }}
+{{ if $.Values.ranchervm.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,7 +23,7 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: frontend
-        image: rancher/vm-frontend:v0.2.0
+        image: {{ $.Values.ranchervm.image.frontend }}
         imagePullPolicy: Always
 ---
 apiVersion: v1

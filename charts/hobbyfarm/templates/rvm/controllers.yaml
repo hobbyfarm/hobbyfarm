@@ -23,15 +23,15 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: vm-controller
-        image: rancher/vm:v0.2.0
+        image: {{ $.Values.ranchervm.image.vm }}
         imagePullPolicy: Always
         args:
         - -vm
         - -bridge-iface={{ .Values.ranchervm.nic }}
         - -v=3
-        - -image-novnc=rancher/vm-novnc:v0.2.0
-        - -image-tools=rancher/vm-tools:v0.2.0
-        - -image-vm=rancher/vm:v0.2.0
+        - -image-novnc={{ $.Values.ranchervm.image.novnc }}
+        - -image-tools={{ $.Values.ranchervm.image.tools }}
+        - -image-vm={{ $.Values.ranchervm.image.vm }}
       serviceAccountName: ranchervm-service-account
 ---
 apiVersion: apps/v1
@@ -59,7 +59,7 @@ spec:
       hostNetwork: true
       containers:
       - name: ip-controller
-        image: rancher/vm:v0.2.0
+        image: {{ $.Values.ranchervm.image.vm }}
         imagePullPolicy: Always
         command: [ "sh", "-c"]
         args:
