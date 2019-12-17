@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: gargantua
-        image: hobbyfarm/gargantua:11072019
+        image: {{ $.Values.gargantua.image }}
         command:
         - /usr/local/bin/gargantua
         - -alsologtostderr

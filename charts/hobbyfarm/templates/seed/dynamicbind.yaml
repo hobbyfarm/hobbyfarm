@@ -1,3 +1,4 @@
+{{ if .Values.seed.enabled }}
 apiVersion: hobbyfarm.io/v1
 kind: DynamicBindConfiguration
 metadata:
@@ -14,3 +15,4 @@ spec:
     cpu: 0
     memory: 0
     storage: 0
+{{ end }}
