@@ -18,7 +18,7 @@ spec:
           env:
             - name: HF_SERVER
               {{ if $.Values.ingress.enabled }}
-              value: {{ $.Values.ingress.hostnames.backend | quote }}
+              value: {{ print "https://" $.Values.ingress.hostnames.backend | quote }}
               {{ else }}
-              value: {{ print "gargantua." $.Release.Namespace | quote }}
+              value: {{ print "http://gargantua." $.Release.Namespace | quote }}
               {{ end }}
