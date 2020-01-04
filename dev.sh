@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+cd $(dirname $0)
+
 k3d create
 sleep 7 # wait for kubeconfig to become available
 export KUBECONFIG=$(k3d get-kubeconfig)
