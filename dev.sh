@@ -1,14 +1,12 @@
-#!/bin/sh -e
-
+#!/bin/sh -ex
 cd $(dirname $0)
 
-k3d create
-sleep 7 # wait for kubeconfig to become available
+k3d create --workers 3 --wait 0 || true
 export KUBECONFIG=$(k3d get-kubeconfig)
 
-kubectl create ns hobbyfarm
+kubectl create ns hobbyfarm || true
 
-helm install hf charts/hobbyfarm --namespace hobbyfarm --values charts/hobbyfarm/values.yaml --wait
+helm upgrade --install hf charts/hobbyfarm --namespace hobbyfarm --values charts/hobbyfarm/values.yaml --wait
 
 # this can't be executed until all pods attached to services are running
 sudo -E kubefwd services -n hobbyfarm
