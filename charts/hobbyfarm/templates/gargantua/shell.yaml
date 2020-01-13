@@ -19,7 +19,7 @@ spec:
       - name: gargantua
         image: {{ $.Values.gargantua.image }}
         command:
-        - /usr/local/bin/gargantua
+        - gargantua
         - -alsologtostderr
         - -v=9
         - -shellserver
