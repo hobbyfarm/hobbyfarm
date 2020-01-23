@@ -15,3 +15,6 @@ spec:
       containers:
         - name: gargantua
           image: {{ $.Values.gargantua.image }}
+          env:
+            - name: LOG_LEVEL
+              value: {{$.Values.gargantua.logLevel }}

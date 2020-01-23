@@ -4,6 +4,7 @@ ui:
   image: hobbyfarm/ui:0.3.1
 gargantua:
   image: hobbyfarm/gargantua:v0.0.3
+  logLevel: "0"
 
 ingress:
   enabled: false
