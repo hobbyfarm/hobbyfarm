@@ -22,3 +22,13 @@ spec:
               {{ else }}
               value: {{ print "http://gargantua." $.Release.Namespace | quote }}
               {{ end }}
+      {{- if $.Values.ui.configMapName }}
+          volumeMounts:
+            - name: config
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+      volumes:
+        - name: config
+          configMap: 
+            name: {{ $.Values.ui.configMapName }}
+      {{- end }}
