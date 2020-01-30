@@ -17,4 +17,4 @@ spec:
           image: {{ $.Values.gargantua.image }}
           env:
             - name: LOG_LEVEL
-              value: {{$.Values.gargantua.logLevel }}
+              value: {{ $.Values.gargantua.logLevel | quote }}
