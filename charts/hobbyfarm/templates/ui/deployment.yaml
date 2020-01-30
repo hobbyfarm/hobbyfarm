@@ -17,8 +17,18 @@ spec:
           image: {{ $.Values.ui.image }}
           env:
             - name: HF_SERVER
-              {{ if $.Values.ingress.enabled }}
-              value: {{ print "https://" $.Values.ingress.hostnames.backend | quote }}
+              {{- if $.Values.ingress.enabled }}
+              value: {{ $.Values.ingress.hostnames.backend | quote }}
               {{ else }}
-              value: {{ print "http://gargantua." $.Release.Namespace | quote }}
-              {{ end }}
+              value: gargantua
+              {{- end -}}
+      {{- if $.Values.ui.configMapName }}
+          volumeMounts:
+            - name: config
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+      volumes:
+        - name: config
+          configMap: 
+            name: {{ $.Values.ui.configMapName }}
+      {{- end }}
