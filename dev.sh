@@ -1,12 +1,32 @@
-#!/bin/sh -ex
-cd $(dirname $0)
+#!/bin/sh -e
 
-k3d create --workers 3 --wait 0 || true
+# Publishing on local 80 and 443, but you can change this to 8080:80 and 8443:443 
+k3d create --publish 80:80 --publish 443:443 
+
+sleep 5 # wait for kubeconfig to become available
 export KUBECONFIG=$(k3d get-kubeconfig)
 
-kubectl create ns hobbyfarm || true
+# Create the namespace for hobbyfarm to be installed into
+kubectl create namespace hobbyfarm
 
-helm upgrade --install hf charts/hobbyfarm --namespace hobbyfarm --values charts/hobbyfarm/values.yaml --wait
+TFCERT=1
+while [ $TFCERT -ne 0 ]; do
+  echo "Waiting for traefik-default-cert to be created..."
+  sleep 5
+  kubectl -n kube-system get secret traefik-default-cert && TFCERT=0 || TFCERT=$?
+done
 
-# this can't be executed until all pods attached to services are running
-sudo -E kubefwd services -n hobbyfarm
+# Delete the existing cert
+echo "Deleting existing traefik-default-cert..."
+kubectl -n kube-system delete secret traefik-default-cert
+
+# substitute our own
+echo "Creating new traefik-default-cert..."
+kubectl -n kube-system create secret tls traefik-default-cert --cert=cert.pem --key=key.pem
+
+# redeploy the traefik pod if it exists
+echo "Redeploying traefik..."
+kubectl -n kube-system patch deployment traefik -p "{\"spec\": {\"template\": {\"metadata\": { \"labels\": {  \"redeploy\": \"$(date +%s)\"}}}}}"
+
+echo "Installing HobbyFarm chart..."
+helm install hf charts/hobbyfarm --namespace hobbyfarm --values values-ignored.yaml --wait
