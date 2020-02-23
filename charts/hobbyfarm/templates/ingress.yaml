@@ -1,0 +1,46 @@
+{{ if $.Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hobbyfarm
+  namespace: {{ .Release.Namespace }}
+  annotations:
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  rules:
+  - host: {{ $.Values.ingress.hostnames.admin }}
+    http:
+      paths:
+      - backend:
+          serviceName: admin-ui
+          servicePort: 80
+  - host: {{ $.Values.ingress.hostnames.backend }}
+    http:
+      paths:
+      - backend:
+          serviceName: gargantua
+          servicePort: 80
+  - host: {{ $.Values.ingress.hostnames.shell }}
+    http:
+      paths:
+      - backend:
+          serviceName: shell
+          servicePort: 80
+  - host: {{ $.Values.ingress.hostnames.ui }}
+    http:
+      paths:
+      - backend:
+          serviceName: ui
+          servicePort: 80
+{{ if $.Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ $.Values.ingress.hostnames.admin }}
+    - {{ $.Values.ingress.hostnames.backend }}
+    - {{ $.Values.ingress.hostnames.shell }}
+    - {{ $.Values.ingress.hostnames.ui }}
+    secretName: {{ $.Values.ingress.tls.secretName }}
+{{ end }}
+{{ end }}

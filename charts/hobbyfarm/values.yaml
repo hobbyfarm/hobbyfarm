@@ -11,6 +11,7 @@ ingress:
   annotations: {}
   tls:
     enabled: true
+    secretName: hobbyfarm-cert
   hostnames:
     # ui: example.com
     # admin: admin.example.com
