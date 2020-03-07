@@ -15,6 +15,10 @@ spec:
       containers:
         - name: admin-ui
           image: {{ $.Values.admin.image }}
+          {{ if $.Values.insecure }}
+          args:
+            - --insecure
+          {{ end -}}
           env:
             - name: HF_SERVER
               {{ if $.Values.ingress.enabled }}

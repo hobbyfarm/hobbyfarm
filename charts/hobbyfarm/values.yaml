@@ -7,6 +7,9 @@ gargantua:
   image: hobbyfarm/gargantua:v0.0.3
   logLevel: "0"
 
+# use insecure protocols (e.g., for local development)
+insecure: false
+
 ingress:
   enabled: false
   annotations: {}
