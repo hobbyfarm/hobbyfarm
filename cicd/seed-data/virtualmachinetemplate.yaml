@@ -1,0 +1,12 @@
+apiVersion: hobbyfarm.io/v1
+kind: VirtualMachineTemplate
+metadata:
+  name: sshd
+spec:
+  id: sshd
+  name: sshd
+  image: sshd
+  resources:
+    cpu: 1
+    memory: 1024
+    storage: 10
