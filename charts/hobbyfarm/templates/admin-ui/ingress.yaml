@@ -20,5 +20,8 @@ spec:
   tls:
   - hosts:
     - {{ $.Values.ingress.hostnames.admin }}
+{{- if hasKey .Values.ingress.tls.secrets "admin" }}
+    secretName: {{ $.Values.ingress.tls.secrets.admin }}
+{{- end }}
 {{ end }}
 {{ end }}

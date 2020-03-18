@@ -20,5 +20,8 @@ spec:
   tls:
   - hosts:
     - {{ $.Values.ingress.hostnames.backend }}
+{{- if hasKey .Values.ingress.tls.secrets "backend" }}
+    secretName: {{ $.Values.ingress.tls.secrets.backend }}
+{{- end }}
 {{ end }}
 {{ end }}
