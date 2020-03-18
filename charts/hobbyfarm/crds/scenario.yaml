@@ -8,4 +8,7 @@ spec:
   names:
     kind: Scenario
     plural: scenarios
+    singular: scenario
+    shortNames:
+    - s
   scope: Cluster

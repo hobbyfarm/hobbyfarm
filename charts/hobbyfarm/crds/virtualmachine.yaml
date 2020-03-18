@@ -8,4 +8,8 @@ spec:
   names:
     kind: VirtualMachine
     plural: virtualmachines
+    singular: virtualmachine
+    shortNames:
+    - vm
+    - vms
   scope: Cluster
