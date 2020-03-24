@@ -8,4 +8,7 @@ spec:
   names:
     kind: ScenarioSession
     plural: scenariosessions
+    singular: scenariosession
+    shortNames:
+    - ss
   scope: Cluster
