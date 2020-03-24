@@ -1,2 +1,5 @@
 dist/
 **/values-ignored.yaml
+
+# docker-compose enviornment variables
+/.env
