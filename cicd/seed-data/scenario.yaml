@@ -1,0 +1,13 @@
+apiVersion: hobbyfarm.io/v1
+kind: Scenario
+metadata:
+  name: example-scenario
+spec:
+  id: example-scenario
+  name: "U2luZ2xlLU5vZGUgUmFuY2hlciBJbnN0YWxsCg=="
+  description: "aW4gNSBlYXN5IHN0ZXBzLCB3ZSB3aWxsIHRlYWNoIHlvdSBob3cgdG8gbm90IGJlIGJhZAo="
+  steps:
+  - title: "dGVzdGluZwo="
+    content: "dGVzdGluZwo="
+  virtualmachines:
+  - node01: sshd

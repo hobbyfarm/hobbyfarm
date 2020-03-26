@@ -1,0 +1,17 @@
+apiVersion: hobbyfarm.io/v1
+kind: ScheduledEvent
+metadata:
+  name: training
+spec:
+  name: training
+  description: Training
+  access_code: training
+  start_time: Wed Jan 1 00:00:00 UTC 2020
+  end_time: Mon Jan 1 00:00:00 UTC 2120
+  required_vms:
+    example-environment:
+      sshd: 1
+  scenarios:
+  - example-scenario
+status:
+  active: true

@@ -8,4 +8,8 @@ spec:
   names:
     kind: VirtualMachineSet
     plural: virtualmachinesets
+    singular: virtualmachineset
+    shortNames:
+    - vmset
+    - vmsets
   scope: Cluster

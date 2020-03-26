@@ -8,4 +8,9 @@ spec:
   names:
     kind: VirtualMachineTemplate
     plural: virtualmachinetemplates
+    singular: virtualmachinetemplate
+    shortNames:
+    - vmt
+    - vmtemplate
+    - vmtemplates
   scope: Cluster

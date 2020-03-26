@@ -8,4 +8,7 @@ spec:
   names:
     kind: Environment
     plural: environments
+    singular: environment
+    shortNames:
+    - e
   scope: Cluster

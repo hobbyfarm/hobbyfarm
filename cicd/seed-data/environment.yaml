@@ -1,0 +1,20 @@
+apiVersion: hobbyfarm.io/v1
+kind: Environment
+metadata:
+  name: example-environment
+spec:
+  name: example-environment
+  burst_capable: true
+  burst_count_capacity:
+    sshd: 30
+  count_capacity:
+    sshd: 30
+  capacity_mode: count
+  display_name: Example Environment
+  template_mapping:
+    sshd:
+      image: fake
+  environment_specifics:
+    module: tf-module
+    executor_image: oats87/terraform-controller-executor:hfv1
+  ws_endpoint: localhost:16211
