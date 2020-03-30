@@ -1,11 +1,14 @@
 admin:
   image: hobbyfarm/admin-ui:v0.1.2
 ui:
-  image: hobbyfarm/ui:v0.4.0
+  image: hobbyfarm/ui:v0.4.1
   # configMapName: ui-config
 gargantua:
-  image: hobbyfarm/gargantua:v0.1.1
+  image: hobbyfarm/gargantua:v0.1.3
   logLevel: "0"
+
+shell:
+  replicas: 1
 
 # use insecure protocols (e.g., for local development)
 insecure: false
@@ -37,6 +40,7 @@ terraform:
   controller:
     image: hobbyfarm/terraform-controller
     tag: "12032019"
+    threads: 2
 
   # one of: ranchervm (broken), google, aws, vsphere (untested), do (untested)
   provider: aws
