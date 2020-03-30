@@ -8,4 +8,5 @@ spec:
   names:
     kind: User
     plural: users
+    singular: user
   scope: Cluster

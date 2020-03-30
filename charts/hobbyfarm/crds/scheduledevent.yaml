@@ -8,4 +8,7 @@ spec:
   names:
     kind: ScheduledEvent
     plural: scheduledevents
+    singular: scheduledevent
+    shortNames:
+    - se
   scope: Cluster

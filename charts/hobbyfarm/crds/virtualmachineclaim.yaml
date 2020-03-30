@@ -8,4 +8,9 @@ spec:
   names:
     kind: VirtualMachineClaim
     plural: virtualmachineclaims
+    singular: virtualmachineclaim
+    shortNames:
+    - vmc
+    - vmclaim
+    - vmclaims
   scope: Cluster

@@ -8,4 +8,7 @@ spec:
   names:
     kind: AccessCode
     plural: accesscodes
+    singular: accesscode
+    shortNames:
+    - ac
   scope: Cluster

@@ -1,0 +1,33 @@
+version: "3.5"
+
+services:
+
+  k3d:
+    image: rancher/k3s:v1.17.2-k3s1
+    container_name: hf-k3d
+    hostname: k3d
+    privileged: true
+    command:
+      - server
+      - --https-listen-port
+      - "6443"
+    environment:
+      K3D_PORT: ${K3D_PORT:-16220}
+    networks:
+    - dev
+    ports:
+    - "${K3D_PORT:-16220}:6443"
+    volumes:
+    - .:/app:ro
+    - ./cicd/k3d.resolv.conf:/etc/resolv.conf:ro
+    - kube-sa:/var/run/secrets/kubernetes.io/serviceaccount
+
+networks:
+  dev:
+    external: true
+    name: hobbyfarm-dev
+
+volumes:
+  kube-sa:
+    external: true
+    name: hobbyfarm-kube-sa

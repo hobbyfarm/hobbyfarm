@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+
+  sshd:
+    build:
+      context: ./docker-local-sshd
+    image: hobbyfarm/local-sshd:latest
+
+  tf-git:
+    build:
+      context: ./docker-local-tf-git
+    image: hobbyfarm/local-tf-git:latest

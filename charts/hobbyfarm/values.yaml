@@ -1,11 +1,14 @@
 admin:
-  image: hobbyfarm/admin-ui:0.0.13
+  image: hobbyfarm/admin-ui:v0.1.1
 ui:
-  image: hobbyfarm/ui:0.3.1
+  image: hobbyfarm/ui:v0.4.0
   # configMapName: ui-config
 gargantua:
-  image: hobbyfarm/gargantua:v0.0.3
+  image: hobbyfarm/gargantua:v0.1.1
   logLevel: "0"
+
+# use insecure protocols (e.g., for local development)
+insecure: false
 
 ingress:
   enabled: false

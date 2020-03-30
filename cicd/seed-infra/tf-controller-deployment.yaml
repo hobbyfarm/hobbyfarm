@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: terraform-controller
+  name: terraform-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: terraform-controller
+  template:
+    metadata:
+      labels:
+        run: terraform-controller
+        version: v0.0.3
+    spec:
+      containers:
+      - image: hobbyfarm/terraform-controller:12032019
+        imagePullPolicy: IfNotPresent
+        name: terraform-controller
+        command: ["terraform-controller"]
+        args: ["--namespace", "default"]
