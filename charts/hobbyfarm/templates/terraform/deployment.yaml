@@ -21,5 +21,5 @@ spec:
         - image: "{{ $.Values.terraform.controller.image }}:{{ $.Values.terraform.controller.tag }}"
           name: terraform-controller
           command: ["terraform-controller"]
-          args: ["--namespace", "{{ .Release.Namespace }}"]
+          args: ["--namespace", "{{ .Release.Namespace }}", "--threads", "{{ $.Values.terraform.controller.threads }}"]
 {{ end }}

@@ -6,7 +6,7 @@ metadata:
     app: gargantua-shell
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ $.Values.shell.replicas }}
   selector:
     matchLabels:
       app: gargantua-shell
