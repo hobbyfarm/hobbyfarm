@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   hobbyfarm:
   - apiVersion: v2
+    created: "2020-04-02T03:10:06.104702842Z"
+    description: interactive coding platform in a browser
+    digest: af71e17b7e3c40d3796229721ad837de25d9bdd34972e7303f5f1535c245a835
+    name: hobbyfarm
+    sources:
+    - https://github.com/hobbyfarm
+    urls:
+    - https://github.com/hobbyfarm/hobbyfarm/releases/download/hobbyfarm-0.1.2/hobbyfarm-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2020-04-01T19:57:49.174277045Z"
     description: interactive coding platform in a browser
     digest: 334328100abd2b642fd62714762bd7238653c48c41c3611bf5443da42b044c14
