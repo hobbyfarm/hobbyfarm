@@ -1,7 +1,7 @@
 admin:
   image: hobbyfarm/admin-ui:v0.1.2
 ui:
-  image: hobbyfarm/ui:v0.4.1
+  image: hobbyfarm/ui:v0.4.2
   # configMapName: ui-config
 gargantua:
   image: hobbyfarm/gargantua:v0.1.4
