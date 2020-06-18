@@ -4,7 +4,7 @@ ui:
   image: hobbyfarm/ui:v0.4.3
   # configMapName: ui-config
 gargantua:
-  image: hobbyfarm/gargantua:v0.1.5
+  image: hobbyfarm/gargantua:v0.1.6
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
