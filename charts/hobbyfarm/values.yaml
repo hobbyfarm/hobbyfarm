@@ -1,5 +1,5 @@
 admin:
-  image: hobbyfarm/admin-ui:v0.2.0
+  image: hobbyfarm/admin-ui:v0.2.1
 ui:
   image: hobbyfarm/ui:v0.4.4
   # configMapName: ui-config
