@@ -12,8 +12,7 @@ spec:
       image: {{ (index .Values.terraform .Values.terraform.provider).image }}
 
   environment_specifics:
-    module: tf-module
-    executor_image: {{ .Values.terraform.executor_image }}
+    executor_image: {{ .Values.terraform.executor.image }}:{{ .Values.terraform.executor.tag }}
 
     {{ if eq .Values.terraform.provider "ranchervm" }}
 {{ toYaml .Values.terraform.ranchervm | indent 4 -}}

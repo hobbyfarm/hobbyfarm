@@ -6,5 +6,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   git:
-    url: {{ (index $.Values.terraform $.Values.terraform.provider).module }}
+    url: {{ (index $.Values.terraform $.Values.terraform.provider).module_repo }}
 {{ end }}
