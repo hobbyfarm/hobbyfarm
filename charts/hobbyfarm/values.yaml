@@ -1,10 +1,10 @@
 admin:
-  image: hobbyfarm/admin-ui:v0.2.1
+  image: hobbyfarm/admin-ui:v0.2.3
 ui:
-  image: hobbyfarm/ui:v0.4.5
+  image: hobbyfarm/ui:v0.4.6
   # configMapName: ui-config
 gargantua:
-  image: hobbyfarm/gargantua:v0.1.8
+  image: hobbyfarm/gargantua:v0.1.9
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
