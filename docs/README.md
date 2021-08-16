@@ -32,6 +32,28 @@ For example,
 
 Here is a list of the available options: https://github.com/hobbyfarm/ui/blob/master/src/app/VM.ts
 
+### hidden elements
+
+To create hidden text elements:
+
+    ```hidden:Hidden Text Summary
+    This is the hidden Text that opens and closes after a click on the summary
+    ```
+
+### nested elements
+
+Nested elements can be applied inside blocks (```) or hidden elements. To define a nested block, use tildes instead of backticks, e.g.:  
+
+    ```
+    Some text
+    ~~~python
+    # This program prints Hello, world!
+
+    print('Hello, world!')
+    ~~~
+    Some more text
+    ```
+
 
 ## development
 
