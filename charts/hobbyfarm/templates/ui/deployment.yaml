@@ -28,9 +28,11 @@ spec:
               {{ end }}
       {{- if $.Values.ui.configMapName }}
           volumeMounts:
+            {{ if $.Values.ui.config }}
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
+            {{ end }}
             {{ if $.Values.ui.custom }}
             - name: config
               mountPath: /usr/share/nginx/html/custom.css
