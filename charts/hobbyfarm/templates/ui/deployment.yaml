@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: ui
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/ui/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - name: ui
