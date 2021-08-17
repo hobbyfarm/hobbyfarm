@@ -31,6 +31,11 @@ spec:
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
+            {{ if $.Values.ui.custom }}
+            - name: config
+              mountPath: /usr/share/nginx/html/custom.css
+              subPath: custom.css
+            {{ end }}
       volumes:
         - name: config
           configMap: 
