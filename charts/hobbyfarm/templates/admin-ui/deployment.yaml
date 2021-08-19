@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: admin-ui
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/admin-ui/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - name: admin-ui
