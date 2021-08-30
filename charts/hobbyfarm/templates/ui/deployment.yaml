@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: ui
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/ui/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - name: ui
@@ -28,9 +30,16 @@ spec:
               {{ end }}
       {{- if $.Values.ui.configMapName }}
           volumeMounts:
+            {{ if $.Values.ui.config }}
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
+            {{ end }}
+            {{ if $.Values.ui.custom }}
+            - name: config
+              mountPath: /usr/share/nginx/html/custom.css
+              subPath: custom.css
+            {{ end }}
       volumes:
         - name: config
           configMap: 

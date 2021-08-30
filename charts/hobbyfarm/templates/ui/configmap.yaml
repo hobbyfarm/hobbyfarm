@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: hobbyfarm
+  name: ui-config
+data:
+  {{ if $.Values.ui.config -}}
+  config.json: |
+    {
+        "title": {{ $.Values.ui.config.title | quote }},
+        "favicon": {{ $.Values.ui.config.favicon | quote }},
+        "login": {
+            "logo": {{ $.Values.ui.config.login.logo | quote }},
+            "background": {{ $.Values.ui.config.login.background | quote }}
+        },
+        "logo": {{ $.Values.ui.config.logo | quote }}
+    }
+  {{- end }}
+  {{ if $.Values.ui.custom -}}
+  custom.css: {{ $.Values.ui.custom | quote }}
+  {{- end }}
