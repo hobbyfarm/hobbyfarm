@@ -1,5 +1,13 @@
 admin:
   image: hobbyfarm/admin-ui:v0.2.5
+  # configMapName: admin-config
+  # config:
+    # title: HobbyFarm Administration
+    # favicon: /assets/default/favicon.png
+    # login:
+      # logo: /assets/default/rancher-labs-stacked-color.svg
+      # background: assets/default/vault.jpg
+    # logo: /assets/default/logo.svg
 ui:
   image: hobbyfarm/ui:v0.4.8
   # configMapName: ui-config
