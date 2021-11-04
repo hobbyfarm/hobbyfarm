@@ -20,6 +20,12 @@ To execute code on a particular node (e.g., `node01`):
     ls
     ```
 
+Click to run allows to limit the number of executions
+
+    ```ctr:node01:2
+    echo This is limited to 2 executions
+    ```
+
 ### get vm info
 
 To get info from a VM:
