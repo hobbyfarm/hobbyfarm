@@ -9,4 +9,4 @@ spec:
     kind: Session
     plural: sessions
     singular: session
-  scope: Cluster
+  scope: Namespaced

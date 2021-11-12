@@ -11,4 +11,4 @@ spec:
     singular: scenario
     shortNames:
     - s
-  scope: Cluster
+  scope: Namespaced

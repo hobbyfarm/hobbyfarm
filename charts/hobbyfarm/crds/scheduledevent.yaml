@@ -11,4 +11,4 @@ spec:
     singular: scheduledevent
     shortNames:
     - se
-  scope: Cluster
+  scope: Namespaced

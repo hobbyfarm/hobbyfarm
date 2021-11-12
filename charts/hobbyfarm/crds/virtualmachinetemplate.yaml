@@ -13,4 +13,4 @@ spec:
     - vmt
     - vmtemplate
     - vmtemplates
-  scope: Cluster
+  scope: Namespaced
