@@ -5,7 +5,7 @@ metadata:
   labels:
     apps.kubernetes.io/component: controller
     apps.kubernetes.io/name: terraform-controller
-  name: terraform-controller-{{ .Release.Name }}
+  name: terraform-controller-{{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

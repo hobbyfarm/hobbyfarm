@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gargantua-{{ .Release.Name }}
+  name: gargantua-{{ .Release.Namespace }}
   namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups: ["hobbyfarm.io", "terraformcontroller.cattle.io"]
@@ -11,7 +11,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: gargantua-{{ .Release.Name }}
+  name: gargantua-{{ .Release.Namespace }}
   namespace: {{ .Release.Namespace }}
 subjects:
 - kind: ServiceAccount
@@ -19,7 +19,7 @@ subjects:
   name: default
 roleRef:
   kind: ClusterRole
-  name: gargantua-{{ .Release.Name }}
+  name: gargantua-{{ .Release.Namespace }}
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
