@@ -24,6 +24,9 @@ spec:
         - -v=9
         - -shellserver
         - -disablecontrollers
+        env:
+          - name: HF_NAMESPACE
+            value: {{ .Release.Namespace }}
 ---
 apiVersion: v1
 kind: Service
