@@ -10,6 +10,8 @@ HobbyFarm is released monthly, on or around the 1st of the month.
 
 Releases may be major, minor, or patch. Release types are determined at time of release depending on the content of the release. 
 
+For upgrades between major versions see docs/upgrade
+
 ## Contributing
 
 If you're interested in contributing to HobbyFarm, see [CONTRIBUTING.md](CONTRIBUTING.md)
