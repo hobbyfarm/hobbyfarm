@@ -7,8 +7,8 @@ spec:
   version: v1
   names:
     kind: Progress
-    plural: Progresses
-    singular: Progress
+    plural: progresses
+    singular: progress
     shortNames:
     - p
     - prg
