@@ -13,4 +13,4 @@ spec:
     - vmc
     - vmclaim
     - vmclaims
-  scope: Cluster
+  scope: Namespaced

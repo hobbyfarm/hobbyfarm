@@ -9,4 +9,4 @@ spec:
     kind: Course
     plural: courses
     singular: course
-  scope: Cluster
+  scope: Namespaced

@@ -11,4 +11,4 @@ spec:
     singular: dynamicbindrequest
     shortNames:
     - dbr
-  scope: Cluster
+  scope: Namespaced

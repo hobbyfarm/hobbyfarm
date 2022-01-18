@@ -22,3 +22,5 @@ spec:
               value: {{ $.Values.gargantua.scheduledBaseNamePrefix | quote }}
             - name: HF_BASENAME_DYNAMIC_PREFIX
               value: {{ $.Values.gargantua.dynamicBaseNamePrefix | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace }}

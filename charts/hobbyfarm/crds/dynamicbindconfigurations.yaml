@@ -11,4 +11,4 @@ spec:
     singular: dynamicbindconfiguration
     shortNames:
     - dbc
-  scope: Cluster
+  scope: Namespaced

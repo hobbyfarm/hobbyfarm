@@ -11,4 +11,4 @@ spec:
     singular: environment
     shortNames:
     - e
-  scope: Cluster
+  scope: Namespaced

@@ -9,4 +9,4 @@ spec:
     kind: User
     plural: users
     singular: user
-  scope: Cluster
+  scope: Namespaced
