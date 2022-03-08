@@ -18,6 +18,14 @@ ui:
       # logo: /assets/default/rancher-labs-stacked-color.svg
       # background: /assets/default/login_container_farm.svg
     # logo: /assets/default/logo.svg
+    # about: 
+      # title: About HobbyFarm
+      # body: HobbyFarm was lovingly crafted by @ebauman and @Oats87 from @RancherLabs
+      # buttons:
+        # - title: Example Title
+        #   url: https://github.com/hobbyfarm
+        # - title: Example Title 2
+        #   url: https://github.com/hobbyfarm/hobbyfarm
   # custom: |
     # .custom-css {
       # /* Some custom css */

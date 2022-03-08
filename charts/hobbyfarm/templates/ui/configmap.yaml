@@ -13,7 +13,21 @@ data:
             "logo": {{ $.Values.ui.config.login.logo | quote }},
             "background": {{ $.Values.ui.config.login.background | quote }}
         },
-        "logo": {{ $.Values.ui.config.logo | quote }}
+        "logo": {{ $.Values.ui.config.logo | quote }},
+        "about": {
+            {{ if $.Values.ui.config.about -}}
+            "title": {{ $.Values.ui.config.about.title | default "" | quote }},
+            "body": {{ $.Values.ui.config.about.body | default "" | quote }},
+            "buttons": [
+            {{- range $index, $val := $.Values.ui.config.about.buttons }}
+            {
+                {{ "title" | quote | indent 4}}: {{ $val.title | quote }},
+                {{ "url" | quote | indent 4}}: {{ $val.url | quote }}
+            }{{ if ne (add1 $index) (len $.Values.ui.config.about.buttons) }},{{ end }}
+            {{- end }}
+            ]
+            {{- end }}
+        }
     }
   {{- end }}
   {{ if $.Values.ui.custom -}}
