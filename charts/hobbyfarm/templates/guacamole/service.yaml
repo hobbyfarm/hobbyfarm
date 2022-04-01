@@ -1,0 +1,16 @@
+{{ if $.Values.guac }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: guacd
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    component: guacd
+  type: ClusterIP
+  ports:
+    - name: tcp
+      port: 4822
+      targetPort: 4822
+      protocol: TCP
+{{ end }}
