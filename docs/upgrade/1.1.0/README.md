@@ -4,7 +4,13 @@ Starting with v1.1.0, role-based access control (RBAC) abilities were added to H
 
 This guide will show you how to upgrade to v1.1.0, maintaining admin access for your previously-`admin`-tagged users. 
 
-## Update
+## Semi-Automatic Update
+
+Execute [rbac_converter.sh](rbac_converter.sh) to automatically apply RBAC changes. 
+
+> We recommend executing `rbac_converter.sh --help` to examine all options prior to execution.
+
+## Manual Update
 
 ### Prerequisites
 
@@ -19,7 +25,7 @@ This guide will show you how to upgrade to v1.1.0, maintaining admin access for 
 
 2. Get a list of all users who have the `admin` flag set to `true`:
 
-        kubectl get users -o=jsonpath='{range .items[?(@.spec.admin==true)]}{.metadata.name}{"\r\n"}{end}'
+        kubectl get users -o=jsonpath='{.items[?(@.spec.admin == true)].metadata.name}'
 
 3. For each one of these users, create a rolebinding that maps them to the `hobbyfarm-admin` user. 
 
