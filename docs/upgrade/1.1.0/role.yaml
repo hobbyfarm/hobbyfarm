@@ -1,0 +1,11 @@
+apiVersion: authorization.rbac.k8s.io/v1
+kind: Role
+metadata:
+  name: hobbyfarm-admin
+rules:
+- apiGroups: ["hobbyfarm.io"]
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: ["authorization.rbac.k8s.io"]
+  resources: ["roles", "rolebindings"]
+  verbs: ["*"]
