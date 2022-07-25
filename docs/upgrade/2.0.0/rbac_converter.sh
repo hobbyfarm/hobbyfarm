@@ -7,8 +7,8 @@ OVERWRITE_ADMIN=true
 ROLE_MANIFEST=role.yaml
 
 help_menu() {
-    echo 'This is the upgrade converter for HobbyFarm v1.1.0'
-    echo 'This helper will migrate current "admin" users to the v1.1.0 RBAC model'
+    echo 'This is the upgrade converter for HobbyFarm v2.0.0'
+    echo 'This helper will migrate current "admin" users to the v2.0.0 RBAC model'
     echo 'It will create a role, "hobbyfarm-admin", and all existing admins will be rolebound to it'
     echo ''
     echo 'It is suggested to run a dry-run first to view changes that will be implemented before applying'
@@ -74,7 +74,7 @@ echo "
 ██   ██ ██    ██ ██   ██ ██   ██    ██    ██      ██   ██ ██   ██ ██  ██  ██
 ██   ██  ██████  ██████  ██████     ██    ██      ██   ██ ██   ██ ██      ██
 "
-echo "hobbyfarm v1.1.0 rbac converter"
+echo "hobbyfarm v2.0.0 rbac converter"
 echo ""
 echo "Invoking with:"
 echo ""

@@ -1,8 +1,8 @@
-# Upgrade from to v1.1.0
+# Upgrade from v1.0.0 to v2.0.0
 
-Starting with v1.1.0, role-based access control (RBAC) abilities were added to HobbyFarm. This also included the removal of the user `admin` flag which previously gated access to administrative functions in HobbyFarm. 
+Starting with v2.0.0, role-based access control (RBAC) abilities were added to HobbyFarm. This also included the removal of the user `admin` flag which previously gated access to administrative functions in HobbyFarm. 
 
-This guide will show you how to upgrade to v1.1.0, maintaining admin access for your previously-`admin`-tagged users. 
+This guide will show you how to upgrade to v2.0.0, maintaining admin access for your previously-`admin`-tagged users. 
 
 ## Semi-Automatic Update
 
