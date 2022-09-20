@@ -30,3 +30,6 @@ Execute [rbac_converter.sh](rbac_converter.sh) to automatically apply RBAC chang
 3. For each one of these users, create a rolebinding that maps them to the `hobbyfarm-admin` user. 
 
         kubectl create rolebinding --namespace [hobbyfarm-install-namespace] --role=hobbyfarm-admin --user=[user]
+
+### Let Gargantua create default Roles
+Gargantua can also create default roles like "scheduled event creator" or "readonly users". To enable gargantua to create those roles the `installrbacroles` flag must be provided during the start of gargantua.
