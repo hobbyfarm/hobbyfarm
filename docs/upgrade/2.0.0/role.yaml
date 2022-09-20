@@ -6,6 +6,6 @@ rules:
 - apiGroups: ["hobbyfarm.io"]
   resources: ["*"]
   verbs: ["*"]
-- apiGroups: ["authorization.rbac.k8s.io"]
+- apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["roles", "rolebindings"]
   verbs: ["*"]

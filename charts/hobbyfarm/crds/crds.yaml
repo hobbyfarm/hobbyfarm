@@ -33,7 +33,7 @@ spec:
               id:
                 nullable: true
                 type: string
-              keypair_name:
+              secret_name:
                 nullable: true
                 type: string
               provision:
