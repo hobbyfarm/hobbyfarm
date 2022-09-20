@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   k3d:
-    image: rancher/k3s:v1.17.2-k3s1
+    image: rancher/k3s:v1.21.13-k3s1
     container_name: hf-k3d
     hostname: k3d
     privileged: true
