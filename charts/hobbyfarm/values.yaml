@@ -36,6 +36,10 @@ gargantua:
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
 
+# Use guacamole to provision windows VMs (optional)
+# guac:
+#   image: ***to be published***
+
 shell:
   replicas: 1
 
