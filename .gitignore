@@ -3,3 +3,6 @@ dist/
 
 # docker-compose enviornment variables
 /.env
+
+tls.crt
+tls.key
