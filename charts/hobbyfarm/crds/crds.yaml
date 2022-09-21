@@ -186,7 +186,7 @@ spec:
         properties:
           spec:
             properties:
-              count_map:
+              config_map:
                 additionalProperties:
                   nullable: true
                   type: string
