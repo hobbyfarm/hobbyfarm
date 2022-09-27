@@ -38,6 +38,9 @@ spec:
                 type: string
               provision:
                 type: boolean
+              protocol:
+                nullable: true
+                type: string
               ssh_username:
                 nullable: true
                 type: string
