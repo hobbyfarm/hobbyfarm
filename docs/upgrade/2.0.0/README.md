@@ -1,7 +1,7 @@
 # Upgrade from v1.0.0 to v2.0.0
 
 Starting with v2.0.0, role-based access control (RBAC) abilities were added to HobbyFarm. This also included the removal of the user `admin` flag which previously gated access to administrative functions in HobbyFarm. 
-Kubernetes 1.22 deprecated the use of v1beta1 CRDs. Hobbyfarm now also uses the v1 version for CRDs leading to another breaking change for users prior to v2.0.0.
+Kubernetes 1.22 deprecated the use of v1beta1 CRDs. CRDs are also now completely managed via Gargantua (the HobbyFarm API server), so no manual intervention is required for CRDs.
 
 This guide will show you how to upgrade to v2.0.0, maintaining admin access for your previously-`admin`-tagged users. 
 
