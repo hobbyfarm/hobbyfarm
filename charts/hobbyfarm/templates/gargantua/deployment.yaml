@@ -15,6 +15,10 @@ spec:
       containers:
         - name: gargantua
           image: {{ $.Values.gargantua.image }}
+          command: ["gargantua"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
           env:
             - name: LOG_LEVEL
               value: {{ $.Values.gargantua.logLevel | quote }}
@@ -23,4 +27,20 @@ spec:
             - name: HF_BASENAME_DYNAMIC_PREFIX
               value: {{ $.Values.gargantua.dynamicBaseNamePrefix | quote }}
             - name: HF_NAMESPACE
-              value: {{ .Release.Namespace }}
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.gargantua.apiPort | quote }}
+            - name: WEBHOOK_PORT
+              value: {{ .Values.gargantua.webhook.containerPort | quote }}
+          ports:
+          - containerPort: {{ .Values.gargantua.webhook.containerPort}}
+          - containerPort: {{ .Values.gargantua.apiPort }}
+          volumeMounts:
+          - name: webhook-secret
+            mountPath: "/webhook-secret"
+            readOnly: true
+      volumes:
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false

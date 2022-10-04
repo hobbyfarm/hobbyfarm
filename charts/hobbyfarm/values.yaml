@@ -1,5 +1,5 @@
 admin:
-  image: hobbyfarm/admin-ui:v1.0.0
+  image: hobbyfarm/admin-ui:v2.0.0-rc1
   # configMapName: admin-config
   # config:
     # title: HobbyFarm Administration
@@ -9,7 +9,7 @@ admin:
       # background: assets/default/vault.jpg
     # logo: /assets/default/logo.svg
 ui:
-  image: hobbyfarm/ui:v1.0.0
+  image: hobbyfarm/ui:v2.0.0-rc1
   # configMapName: ui-config
   # config:
     # title: Old MacDonald's Farm
@@ -31,10 +31,14 @@ ui:
       # /* Some custom css */
     # }
 gargantua:
-  image: hobbyfarm/gargantua:v1.0.0
+  image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
+  apiPort: 80
+  webhook:
+    containerPort: 444
+    servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
