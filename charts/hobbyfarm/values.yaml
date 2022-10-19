@@ -31,7 +31,7 @@ ui:
       # /* Some custom css */
     # }
 gargantua:
-  image: hobbyfarm/gargantua:v2.0.0
+  image: hobbyfarm/gargantua:v2.0.1
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
