@@ -12,7 +12,7 @@ ui:
   image: hobbyfarm/ui:v2.0.0
   # configMapName: ui-config
   # config:
-    # title: Old MacDonald's Farm
+    # title: HobbyFarm Learn
     # favicon: /assets/default/favicon.png
     # login:
       # logo: /assets/default/rancher-labs-stacked-color.svg
@@ -20,7 +20,7 @@ ui:
     # logo: /assets/default/logo.svg
     # about: 
       # title: About HobbyFarm
-      # body: HobbyFarm was lovingly crafted by @ebauman and @Oats87 from @RancherLabs
+      # body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm 
       # buttons:
         # - title: Example Title
         #   url: https://github.com/hobbyfarm
