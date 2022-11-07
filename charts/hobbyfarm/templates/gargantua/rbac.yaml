@@ -49,5 +49,5 @@ subjects:
   name: {{ .Values.gargantua.serviceAccountName }}
 roleRef:
   kind: Role
-  name: {{ .Release.Name }}
+  name: gargantua
   apiGroup: rbac.authorization.k8s.io
