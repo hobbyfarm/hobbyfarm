@@ -31,10 +31,11 @@ ui:
       # /* Some custom css */
     # }
 gargantua:
-  image: hobbyfarm/gargantua:v2.0.1
+  image: hobbyfarm/gargantua:v2.0.2
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
+  serviceAccountName: "hobbyfarm-gargantua"
   apiPort: 80
   webhook:
     containerPort: 444
