@@ -3,6 +3,8 @@ kind: Role
 metadata:
     name: hobbyfarm-admin
     namespace: {{ .Release.Namespace }}
+    labels:
+      rbac.hobbyfarm.io/managed: "true" # must be present in order to configure this role in admin ui
 rules:
 - apiGroups: ["hobbyfarm.io"]
   resources: ["*"]
