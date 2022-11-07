@@ -1,0 +1,9 @@
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: hobbyfarm-admin
+    namespace: {{ .Release.Namespace }}
+spec:
+    id: hobbyfarm-admin
+    email: admin
+    password: $2a$10$wlCtD3St//eVdaYLU1Z.tOb0wGQ55Zs1BFpcgHZ3AbLw9LloWqWWy # hobbyfarm
