@@ -69,10 +69,6 @@ ingress:
       # frontend: vm.example.com
       # backend: vmapi.example.com
 
-# seed with some example data
-seed:
-  enabled: false
-
 # https://github.com/rancher/terraform-controller
 terraform:
   enabled: true
