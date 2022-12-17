@@ -1,0 +1,38 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: hobbyfarm
+
+build:
+  local:
+    concurrency: 0
+    push: false
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+    - image: hobbyfarm/gargantua # must match in artifactOverrides
+      docker:
+        dockerfile: Dockerfile
+      context: ../gargantua
+      sync:
+        manual:
+          - src: '**/*'
+            dest: /
+deploy:
+  kubeContext: rancher-desktop
+  helm:
+    releases:
+    - name: hobbyfarm
+      namespace: hobbyfarm
+      createNamespace: true
+      chartPath: charts/hobbyfarm
+      artifactOverrides:
+        gargantua.image: hobbyfarm/gargantua
+      setValues:
+        ingress.enabled: true
+        ingress.hostnames.ui: localhost
+        ingress.hostnames.admin: admin.localhost
+        ingress.hostnames.backend: hf.localhost
+        ingress.hostnames.shell: shell.hf.localhost
+      imageStrategy:
+        helm: {}
