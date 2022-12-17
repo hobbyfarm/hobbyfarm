@@ -15,6 +15,7 @@ spec:
       labels:
         app: gargantua-shell
     spec:
+      serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
       containers:
       - name: gargantua
         image: {{ $.Values.gargantua.image }}
