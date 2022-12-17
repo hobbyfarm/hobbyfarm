@@ -30,8 +30,13 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
+
 gargantua:
-  image: hobbyfarm/gargantua:v2.0.3
+  image:
+    repository: hobbyfarm/gargantua
+    pullPolicy: Never
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest"
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
@@ -71,7 +76,7 @@ ingress:
 
 # https://github.com/rancher/terraform-controller
 terraform:
-  enabled: true
+  enabled: false
   executor:
     image: rancher/terraform-controller-executor
     tag: "v0.0.13-alpha1"
