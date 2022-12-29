@@ -1,38 +1,58 @@
-apiVersion: skaffold/v2beta29
+apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
   name: hobbyfarm
-
 build:
-  local:
-    concurrency: 0
-    push: false
-  tagPolicy:
-    gitCommit: {}
   artifacts:
-    - image: hobbyfarm/gargantua # must match in artifactOverrides
-      docker:
-        dockerfile: Dockerfile
-      context: ../gargantua
-      sync:
-        manual:
-          - src: '**/*'
-            dest: /
-deploy:
-  kubeContext: rancher-desktop
+  - image: hobbyfarm/gargantua
+    context: ../gargantua
+    sync:
+      manual:
+      - src: '**/*'
+        dest: /
+    docker:
+      dockerfile: Dockerfile
+  - image: hobbyfarm/admin-ui
+    context: ../admin-ui
+    # sync:
+    #   manual:
+    #   - src: '**/*'
+    #     dest: /
+    docker:
+      dockerfile: Dockerfile
+  - image: hobbyfarm/ui
+    context: ../ui
+    # sync:
+    #   manual:
+    #   - src: '**/*'
+    #     dest: /
+    docker:
+      dockerfile: Dockerfile
+  # tagPolicy:
+  #   gitCommit: {}
+  local:
+    push: false
+    concurrency: 0
+manifests:
   helm:
     releases:
     - name: hobbyfarm
-      namespace: hobbyfarm
-      createNamespace: true
       chartPath: charts/hobbyfarm
-      artifactOverrides:
-        gargantua.image: hobbyfarm/gargantua
+      namespace: hobbyfarm
       setValues:
-        ingress.enabled: true
-        ingress.hostnames.ui: localhost
+        ingress.enabled: "true"
         ingress.hostnames.admin: admin.localhost
         ingress.hostnames.backend: hf.localhost
         ingress.hostnames.shell: shell.hf.localhost
-      imageStrategy:
-        helm: {}
+        ingress.hostnames.ui: localhost
+      setValueTemplates:
+        admin.image.repository: '{{.IMAGE_REPO_hobbyfarm_admin_ui}}'
+        admin.image.tag: '{{.IMAGE_TAG_hobbyfarm_admin_ui}}'
+        gargantua.image.repository: '{{.IMAGE_REPO_hobbyfarm_gargantua}}'
+        gargantua.image.tag: '{{.IMAGE_TAG_hobbyfarm_gargantua}}'
+        ui.image.repository: '{{.IMAGE_REPO_hobbyfarm_ui}}'
+        ui.image.tag: '{{.IMAGE_TAG_hobbyfarm_ui}}'
+      createNamespace: true
+deploy:
+  helm: {}
+  kubeContext: rancher-desktop
