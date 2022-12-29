@@ -37,6 +37,8 @@ Using this method, local images will be produced, tagged with a unique hash, and
     folder/
         ../hobbyfarm
         ../gargantua
+        ../admin-ui
+        ../ui
         ../{other hobbyfarm projects}
     ```
 
