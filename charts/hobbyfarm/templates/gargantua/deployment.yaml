@@ -15,7 +15,7 @@ spec:
       serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
       containers:
         - name: gargantua
-          image: {{ $.Values.gargantua.image }}
+          image: "{{ .Values.gargantua.image.repository }}:{{ .Values.gargantua.image.tag | default .Chart.AppVersion }}"
           command: ["gargantua"]
           args:
           - "-v=9"

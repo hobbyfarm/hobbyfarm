@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: admin-ui
-          image: {{ $.Values.admin.image }}
+          image: "{{ .Values.admin.image.repository }}:{{ .Values.admin.image.tag | default .Chart.AppVersion }}"
           {{ if $.Values.insecure }}
           args:
             - --insecure

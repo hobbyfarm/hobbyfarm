@@ -1,5 +1,9 @@
 admin:
-  image: hobbyfarm/admin-ui:v2.0.1
+  image:
+    repository: hobbyfarm/admin-ui
+    pullPolicy: Never
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v2.0.1"
   # configMapName: admin-config
   # config:
     # title: HobbyFarm Administration
@@ -9,7 +13,11 @@ admin:
       # background: assets/default/vault.jpg
     # logo: /assets/default/logo.svg
 ui:
-  image: hobbyfarm/ui:v2.0.1
+  image:
+    repository: hobbyfarm/ui
+    pullPolicy: Never
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v2.0.1"
   # configMapName: ui-config
   # config:
     # title: HobbyFarm Learn
@@ -30,8 +38,13 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
+
 gargantua:
-  image: hobbyfarm/gargantua:v2.0.3
+  image:
+    repository: hobbyfarm/gargantua
+    pullPolicy: Never
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v2.0.1"
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
@@ -56,10 +69,10 @@ ingress:
   annotations: {}
   tls:
     enabled: true
-    # secrets:
-    #   backend: backend-tls-secret # api/controller server
-    #   admin: admin-tls-secret # admin ui
-    #   ui: ui-tls-secret # user frontend "learn" ui
+    secrets:
+      backend: backend-tls-secret # api/controller server
+      admin: admin-tls-secret # admin ui
+      ui: ui-tls-secret # user frontend "learn" ui
   hostnames:
     # ui: example.com
     # admin: admin.example.com
@@ -71,7 +84,7 @@ ingress:
 
 # https://github.com/rancher/terraform-controller
 terraform:
-  enabled: true
+  enabled: false
   executor:
     image: rancher/terraform-controller-executor
     tag: "v0.0.13-alpha1"
