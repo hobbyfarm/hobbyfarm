@@ -71,6 +71,7 @@ ingress:
       # backend: vmapi.example.com
 
 # https://github.com/rancher/terraform-controller
+# You will need a module in order for terraform to work. See /docs/README.md for examples
 terraform:
   enabled: true
   executor:
@@ -80,40 +81,6 @@ terraform:
     image: rancher/terraform-controller
     tag: "v0.0.13-alpha1"
     threads: 2
-
-  # one of: ranchervm (broken), google, aws, vsphere (untested), do (untested)
-  provider: aws
-
-  ranchervm:
-    module: tf-module
-    module_repo: https://github.com/hobbyfarm/tf-module-rvm
-    image: rancher/vm-ubuntu:16.04.5-server-amd64
-    endpoint: "http://backend.ranchervm-system:9500"
-    access_key: ''
-    secret_key: ''
-
-  google:
-    module: tf-module
-    module_repo: https://github.com/boxboat/tf-module-google
-    # credentials: |
-
-  aws:
-    module: tf-module
-    module_repo: https://github.com/hobbyfarm/tf-module-aws
-    image: ami-04763b3055de4860b
-    region: us-east-1
-    # access_key:
-    # secret_key:
-    # subnet:
-    # vpc_security_group_id:
-
-  vsphere:
-    module: tf-module
-    module_repo: https://github.com/hobbyfarm/tf-module-vsphere
-
-  do:
-    module: tf-module
-    module_repo: https://github.com/dramich/domodule
 
 # https://github.com/hobbyfarm/vm
 ranchervm:
