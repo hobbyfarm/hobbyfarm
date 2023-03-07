@@ -1,4 +1,5 @@
 {{ if .Values.ranchervm.enabled }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,16 +18,16 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels:
-                app: backend
-            topologyKey: "kubernetes.io/hostname"
+            - labelSelector:
+                matchLabels:
+                  app: backend
+              topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: backend
-        image: {{ $.Values.ranchervm.image.vm }}
-        imagePullPolicy: Always
-        args:
-        - -backend
+        - name: backend
+          image: {{ $.Values.ranchervm.image.vm }}
+          imagePullPolicy: Always
+          args:
+            - -backend
       serviceAccountName: ranchervm-service-account
 ---
 apiVersion: v1
@@ -36,8 +37,8 @@ metadata:
   namespace: ranchervm-system
 spec:
   ports:
-  - name: api
-    port: 9500
+    - name: api
+      port: 9500
   selector:
     app: backend
   type: ClusterIP

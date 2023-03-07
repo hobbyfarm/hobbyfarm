@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,8 +19,8 @@ spec:
           image: {{ $.Values.gargantua.image }}
           command: ["gargantua"]
           args:
-          - "-v=9"
-          - "-logtostderr"
+            - "-v=9"
+            - "-logtostderr"
           env:
             - name: LOG_LEVEL
               value: {{ $.Values.gargantua.logLevel | quote }}
@@ -34,14 +35,14 @@ spec:
             - name: WEBHOOK_PORT
               value: {{ .Values.gargantua.webhook.containerPort | quote }}
           ports:
-          - containerPort: {{ .Values.gargantua.webhook.containerPort}}
-          - containerPort: {{ .Values.gargantua.apiPort }}
+            - containerPort: {{ .Values.gargantua.webhook.containerPort}}
+            - containerPort: {{ .Values.gargantua.apiPort }}
           volumeMounts:
-          - name: webhook-secret
-            mountPath: "/webhook-secret"
-            readOnly: true
+            - name: webhook-secret
+              mountPath: "/webhook-secret"
+              readOnly: true
       volumes:
-      - name: webhook-secret
-        secret:
-          secretName: hobbyfarm-webhook-secret
-          optional: false
+        - name: webhook-secret
+          secret:
+            secretName: hobbyfarm-webhook-secret
+            optional: false

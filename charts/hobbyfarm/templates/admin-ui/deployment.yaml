@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,6 +38,6 @@ spec:
             {{ end }}
       volumes:
         - name: config
-          configMap: 
+          configMap:
             name: {{ $.Values.admin.configMapName }}
       {{- end }}

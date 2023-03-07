@@ -1,4 +1,5 @@
 {{ if .Values.ranchervm.enabled }}
+---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -8,7 +9,7 @@ roleRef:
   kind: ClusterRole
   name: ranchervm-role
 subjects:
-- kind: ServiceAccount
-  name: ranchervm-service-account
-  namespace: ranchervm-system
+  - kind: ServiceAccount
+    name: ranchervm-service-account
+    namespace: ranchervm-system
 {{ end }}

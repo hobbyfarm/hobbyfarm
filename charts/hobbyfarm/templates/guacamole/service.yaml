@@ -1,4 +1,5 @@
 {{ if $.Values.guac }}
+---
 apiVersion: v1
 kind: Service
 metadata:

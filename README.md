@@ -6,9 +6,9 @@ There is a GitHub Actions [Workflow](https://github.com/hobbyfarm/hobbyfarm/acti
 
 ## Releases & Versioning
 
-HobbyFarm is released monthly, on or around the 1st of the month. 
+HobbyFarm is released monthly, on or around the 1st of the month.
 
-Releases may be major, minor, or patch. Release types are determined at time of release depending on the content of the release. 
+Releases may be major, minor, or patch. Release types are determined at time of release depending on the content of the release.
 
 For upgrades between major versions see docs/upgrade
 
