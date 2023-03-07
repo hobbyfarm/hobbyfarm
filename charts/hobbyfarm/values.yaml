@@ -18,9 +18,9 @@ ui:
       # logo: /assets/default/rancher-labs-stacked-color.svg
       # background: /assets/default/login_container_farm.svg
     # logo: /assets/default/logo.svg
-    # about: 
+    # about:
       # title: About HobbyFarm
-      # body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm 
+      # body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm
       # buttons:
         # - title: Example Title
         #   url: https://github.com/hobbyfarm
@@ -73,7 +73,7 @@ ingress:
 # https://github.com/rancher/terraform-controller
 # You will need a module in order for terraform to work. See /docs/README.md for examples
 terraform:
-  enabled: true
+  enabled: false
   executor:
     image: rancher/terraform-controller-executor
     tag: "v0.0.13-alpha1"
