@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - '**/Chart.yaml'
+  workflow_dispatch:
 
 jobs:
   build:
