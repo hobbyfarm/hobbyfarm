@@ -18,24 +18,24 @@ spec:
       containers:
         - name: admin-ui
           image: {{ $.Values.admin.image }}
-          {{ if $.Values.insecure }}
+          {{- if $.Values.insecure }}
           args:
             - --insecure
-          {{ end -}}
+          {{- end }}
           env:
             - name: HF_SERVER
-              {{ if $.Values.ingress.enabled }}
+              {{- if $.Values.ingress.enabled }}
               value: {{ $.Values.ingress.hostnames.backend | quote }}
-              {{ else }}
+              {{- else }}
               value: gargantua
-              {{ end }}
+              {{- end }}
       {{- if $.Values.admin.configMapName }}
           volumeMounts:
-            {{ if $.Values.admin.config }}
+            {{- if $.Values.admin.config }}
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
-            {{ end }}
+            {{- end }}
       volumes:
         - name: config
           configMap:

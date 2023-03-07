@@ -55,16 +55,16 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ $.Values.ingress.hostnames.ranchervm.backend }}
-    http:
-      paths:
-      - backend:
-          serviceName: backend
-          servicePort: api
-{{ if $.Values.ingress.tls.enabled }}
+    - host: {{ $.Values.ingress.hostnames.ranchervm.backend }}
+      http:
+        paths:
+          - backend:
+              serviceName: backend
+              servicePort: api
+  {{- if $.Values.ingress.tls.enabled }}
   tls:
-  - hosts:
-    - {{ $.Values.ingress.hostnames.ranchervm.backend }}
-{{ end }}
+    - hosts:
+        - {{ $.Values.ingress.hostnames.ranchervm.backend }}
+  {{- end }}
 {{ end }}
 {{ end }}

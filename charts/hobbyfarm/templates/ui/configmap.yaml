@@ -5,7 +5,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   name: ui-config
 data:
-  {{ if $.Values.ui.config -}}
+  {{- if $.Values.ui.config }}
   config.json: |
     {
         "title": {{ $.Values.ui.config.title | quote }},
@@ -31,6 +31,6 @@ data:
         }
     }
   {{- end }}
-  {{ if $.Values.ui.custom -}}
+  {{- if $.Values.ui.custom }}
   custom.css: {{ $.Values.ui.custom | quote }}
   {{- end }}

@@ -18,29 +18,29 @@ spec:
       containers:
         - name: ui
           image: {{ $.Values.ui.image }}
-          {{ if $.Values.insecure }}
+          {{- if $.Values.insecure }}
           args:
             - --insecure
-          {{ end -}}
+          {{- end }}
           env:
             - name: HF_SERVER
-              {{ if $.Values.ingress.enabled }}
+              {{- if $.Values.ingress.enabled }}
               value: {{ $.Values.ingress.hostnames.backend | quote }}
-              {{ else }}
+              {{- else }}
               value: gargantua
-              {{ end }}
+              {{- end }}
       {{- if $.Values.ui.configMapName }}
           volumeMounts:
-            {{ if $.Values.ui.config }}
+            {{- if $.Values.ui.config }}
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
-            {{ end }}
-            {{ if $.Values.ui.custom }}
+            {{- end }}
+            {{- if $.Values.ui.custom }}
             - name: config
               mountPath: /usr/share/nginx/html/custom.css
               subPath: custom.css
-            {{ end }}
+            {{- end }}
       volumes:
         - name: config
           configMap:

@@ -14,4 +14,17 @@ spec:
       port: 4822
       targetPort: 4822
       protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: guac
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    component: guac
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4567
 {{ end }}

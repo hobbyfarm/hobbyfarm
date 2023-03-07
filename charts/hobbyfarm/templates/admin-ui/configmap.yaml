@@ -5,7 +5,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   name: admin-config
 data:
-  {{ if $.Values.admin.config -}}
+  {{- if $.Values.admin.config }}
   config.json: |
     {
         "title": {{ $.Values.admin.config.title | quote }},

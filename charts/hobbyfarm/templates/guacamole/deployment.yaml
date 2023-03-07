@@ -17,4 +17,22 @@ spec:
       containers:
         - name: guacd
           image: guacamole/guacd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guac
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: guac
+  template:
+    metadata:
+      labels:
+        component: guac
+    spec:
+      containers:
+        - name: guac
+          image: {{ $.Values.guac.image }}
 {{ end }}

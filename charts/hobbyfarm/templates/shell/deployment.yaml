@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gargantua-shell
+  labels:
+    app: gargantua-shell
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.shell.replicas }}
+  selector:
+    matchLabels:
+      app: gargantua-shell
+  template:
+    metadata:
+      labels:
+        app: gargantua-shell
+    spec:
+      serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
+      containers:
+        - name: gargantua
+          image: {{ $.Values.gargantua.image }}
+          command:
+            - gargantua
+            - -alsologtostderr
+            - -v=9
+            - -shellserver
+            - -disablecontrollers
+          env:
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace }}

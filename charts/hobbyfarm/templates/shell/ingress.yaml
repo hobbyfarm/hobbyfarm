@@ -1,9 +1,9 @@
-{{ if $.Values.ingress.enabled }}
 ---
+{{ if $.Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gargantua
+  name: shell
   namespace: {{ .Release.Namespace }}
   annotations:
   {{- range $key, $value := .Values.ingress.annotations }}
@@ -11,22 +11,22 @@ metadata:
   {{- end }}
 spec:
   rules:
-    - host: {{ $.Values.ingress.hostnames.backend }}
+    - host: {{ $.Values.ingress.hostnames.shell }}
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: gargantua
+                name: shell
                 port:
                   number: 80
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
-        - {{ $.Values.ingress.hostnames.backend }}
-      {{- if hasKey .Values.ingress.tls.secrets "backend" }}
-      secretName: {{ $.Values.ingress.tls.secrets.backend }}
+        - {{ $.Values.ingress.hostnames.shell }}
+      {{- if hasKey .Values.ingress.tls.secrets "shell" }}
+      secretName: {{ $.Values.ingress.tls.secrets.shell }}
       {{- end }}
   {{- end }}
 {{ end }}

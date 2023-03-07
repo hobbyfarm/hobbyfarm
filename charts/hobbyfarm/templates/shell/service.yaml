@@ -1,15 +1,15 @@
-{{ if $.Values.guac }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: guac
+  name: shell
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    component: guac
+    app: gargantua-shell
   ports:
     - name: http
       port: 80
-      targetPort: 4567
-{{ end }}
+    - name: https
+      port: 443
+      targetPort: 80

@@ -11,22 +11,22 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ $.Values.ingress.hostnames.admin }}
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: admin-ui
-            port:
-              number: 80
-{{ if $.Values.ingress.tls.enabled }}
+    - host: {{ $.Values.ingress.hostnames.admin }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: admin-ui
+                port:
+                  number: 80
+  {{- if $.Values.ingress.tls.enabled }}
   tls:
-  - hosts:
-    - {{ $.Values.ingress.hostnames.admin }}
-{{- if hasKey .Values.ingress.tls.secrets "admin" }}
-    secretName: {{ $.Values.ingress.tls.secrets.admin }}
-{{- end }}
-{{ end }}
+    - hosts:
+        - {{ $.Values.ingress.hostnames.admin }}
+      {{- if hasKey .Values.ingress.tls.secrets "admin" }}
+      secretName: {{ $.Values.ingress.tls.secrets.admin }}
+      {{- end }}
+  {{- end }}
 {{ end }}
