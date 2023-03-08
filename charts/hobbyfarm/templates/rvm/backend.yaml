@@ -54,6 +54,9 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if $.Values.ingress.className }}
+  ingressClassName: {{ $.Values.ingress.className }}
+  {{- end }}
   rules:
     - host: {{ $.Values.ingress.hostnames.ranchervm.backend }}
       http:
@@ -64,7 +67,7 @@ spec:
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
-        - {{ $.Values.ingress.hostnames.ranchervm.backend }}
+        - {{ $.Values.ingress.hostnames.ranchervm.backend | quote }}
   {{- end }}
 {{ end }}
 {{ end }}

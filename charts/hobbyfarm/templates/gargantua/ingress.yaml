@@ -10,6 +10,9 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if $.Values.ingress.className }}
+  ingressClassName: {{ $.Values.ingress.className }}
+  {{- end }}
   rules:
     - host: {{ $.Values.ingress.hostnames.backend }}
       http:
@@ -24,7 +27,7 @@ spec:
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
-        - {{ $.Values.ingress.hostnames.backend }}
+        - {{ $.Values.ingress.hostnames.backend | quote }}
       {{- if hasKey .Values.ingress.tls.secrets "backend" }}
       secretName: {{ $.Values.ingress.tls.secrets.backend }}
       {{- end }}

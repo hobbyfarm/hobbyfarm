@@ -10,6 +10,9 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if $.Values.ingress.className }}
+  ingressClassName: {{ $.Values.ingress.className }}
+  {{- end }}
   rules:
     - host: {{ $.Values.ingress.hostnames.admin }}
       http:
@@ -24,7 +27,7 @@ spec:
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
-        - {{ $.Values.ingress.hostnames.admin }}
+        - {{ $.Values.ingress.hostnames.admin | quote }}
       {{- if hasKey .Values.ingress.tls.secrets "admin" }}
       secretName: {{ $.Values.ingress.tls.secrets.admin }}
       {{- end }}

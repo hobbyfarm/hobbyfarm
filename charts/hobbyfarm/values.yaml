@@ -54,6 +54,7 @@ insecure: false
 
 ingress:
   enabled: false
+  className: ""
   annotations: {}
   tls:
     enabled: true
