@@ -3,7 +3,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: gargantua-{{ .Release.Namespace }}
-  namespace: {{ .Release.Namespace }}
 rules:
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
@@ -16,7 +15,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: gargantua-{{ .Release.Namespace }}
-  namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
@@ -30,7 +28,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: gargantua
-  namespace: {{ .Release.Namespace }}
 rules:
   - apiGroups: [""]
     resources: ["*"]
@@ -52,7 +49,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: gargantua
-  namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}

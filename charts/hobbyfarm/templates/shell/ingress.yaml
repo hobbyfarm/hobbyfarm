@@ -4,7 +4,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shell
-  namespace: {{ .Release.Namespace }}
   annotations:
   {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}

@@ -4,7 +4,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guacd
-  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
@@ -22,7 +21,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guac
-  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
