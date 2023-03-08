@@ -72,6 +72,11 @@ ingress:
       # frontend: vm.example.com
       # backend: vmapi.example.com
 
+users:
+  admin:
+    enabled: false
+    password: $2a$10$33fQs0G.lHQdDAsdoECgA.8iYvNtyJ2XC2AmvR5x6ZkzxSuKXyfFm
+
 # https://github.com/rancher/terraform-controller
 # You will need a module in order for terraform to work. See /docs/README.md for examples
 terraform:

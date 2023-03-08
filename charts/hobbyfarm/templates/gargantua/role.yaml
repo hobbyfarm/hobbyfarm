@@ -1,9 +1,9 @@
+{{ if $.Values.users.admin.enabled }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
     name: hobbyfarm-admin
-    namespace: {{ .Release.Namespace }}
     labels:
       rbac.hobbyfarm.io/managed: "true" # must be present in order to configure this role in admin ui
 rules:
@@ -13,3 +13,4 @@ rules:
   - apiGroups: ["rbac.authorization.k8s.io"]
     resources: ["roles", "rolebindings"]
     verbs: ["*"]
+{{ end }}
