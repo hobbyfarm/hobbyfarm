@@ -75,7 +75,8 @@ ingress:
 users:
   admin:
     enabled: false
-    password: $2a$10$33fQs0G.lHQdDAsdoECgA.8iYvNtyJ2XC2AmvR5x6ZkzxSuKXyfFm
+    # default value to Sup3r@dmin
+    password: $2a$10$9ToKMT37Z7K70xbCVnW9KOzEuPq0JyW/rA06gsukD4U9YfKFjMXTe
 
 # https://github.com/rancher/terraform-controller
 # You will need a module in order for terraform to work. See /docs/README.md for examples
