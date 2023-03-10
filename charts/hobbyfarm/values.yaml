@@ -18,9 +18,9 @@ ui:
       # logo: /assets/default/rancher-labs-stacked-color.svg
       # background: /assets/default/login_container_farm.svg
     # logo: /assets/default/logo.svg
-    # about: 
+    # about:
       # title: About HobbyFarm
-      # body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm 
+      # body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm
       # buttons:
         # - title: Example Title
         #   url: https://github.com/hobbyfarm
@@ -39,7 +39,8 @@ gargantua:
   apiPort: 80
   webhook:
     containerPort: 444
-    servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
+    # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
+    servicePort: 443
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
@@ -53,6 +54,7 @@ insecure: false
 
 ingress:
   enabled: false
+  className: ""
   annotations: {}
   tls:
     enabled: true
@@ -70,10 +72,16 @@ ingress:
       # frontend: vm.example.com
       # backend: vmapi.example.com
 
+users:
+  admin:
+    enabled: false
+    # default value to Sup3r@dmin
+    password: $2a$10$9ToKMT37Z7K70xbCVnW9KOzEuPq0JyW/rA06gsukD4U9YfKFjMXTe
+
 # https://github.com/rancher/terraform-controller
 # You will need a module in order for terraform to work. See /docs/README.md for examples
 terraform:
-  enabled: true
+  enabled: false
   executor:
     image: rancher/terraform-controller-executor
     tag: "v0.0.13-alpha1"

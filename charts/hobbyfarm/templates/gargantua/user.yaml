@@ -1,0 +1,18 @@
+{{ if $.Values.users.admin.enabled }}
+---
+apiVersion: hobbyfarm.io/v1
+kind: User
+metadata:
+  name: admin
+spec:
+  id: admin
+  email: admin
+  password: {{ $.Values.users.admin.password }}
+  admin: true
+  access_codes: []
+  settings:
+    ctr_enabled: "true"
+    ctxAccessCode: example-access-code
+    terminal_fontSize: "16"
+    terminal_theme: Solarized_Dark_Higher_Contrast
+{{ end }}

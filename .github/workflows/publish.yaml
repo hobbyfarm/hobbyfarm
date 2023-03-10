@@ -1,4 +1,4 @@
-name: publish chart
+name: Publish
 
 on:
   push:
@@ -6,34 +6,29 @@ on:
       - master
     paths:
       - '**/Chart.yaml'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    # actions/checkout@v1 must be included to checkout the repo
     - uses: actions/checkout@v2
-      with: 
+      with:
         fetch-depth: 2
-
     - name: check if version was bumped
       run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
-
     - name: package and release charts
       run: |
         OWNER=${GITHUB_REPOSITORY%%/*}
         REPO=${GITHUB_REPOSITORY#*/}
-
         docker run -v $PWD:/app alpine/helm:3.0.0 package /app/charts/hobbyfarm -d /app/dist
         docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
         docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
-
     - name: commit updated index.yaml
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "update index.yaml" -a
-
     - name: push changes
       uses: ad-m/github-push-action@master
       with:

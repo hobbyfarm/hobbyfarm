@@ -1,4 +1,5 @@
 {{ if $.Values.ranchervm.enabled }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -51,17 +52,20 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if $.Values.ingress.className }}
+  ingressClassName: {{ $.Values.ingress.className }}
+  {{- end }}
   rules:
-  - host: {{ $.Values.ingress.hostnames.ranchervm.frontend }}
-    http:
-      paths:
-      - backend:
-          serviceName: frontend
-          servicePort: 80
-{{ if $.Values.ingress.tls.enabled }}
+    - host: {{ $.Values.ingress.hostnames.ranchervm.frontend }}
+      http:
+        paths:
+          - backend:
+              serviceName: frontend
+              servicePort: 80
+  {{- if $.Values.ingress.tls.enabled }}
   tls:
-  - hosts:
-    - {{ $.Values.ingress.hostnames.ranchervm.frontend }}
-{{ end }}
+    - hosts:
+      - {{ $.Values.ingress.hostnames.ranchervm.frontend | quote }}
+  {{- end }}
 {{ end }}
 {{ end }}
