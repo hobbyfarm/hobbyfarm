@@ -1,5 +1,0 @@
-# coredns is picky about /etc/resolv.conf in k3d
-# it doesn't work with a nameserver listening on loopback
-# use cloudflare dns as default
-nameserver 1.1.1.1
-nameserver 1.0.0.1
