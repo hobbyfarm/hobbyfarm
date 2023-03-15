@@ -6,3 +6,5 @@ dist/
 
 tls.crt
 tls.key
+
+.idea/
