@@ -1,7 +1,0 @@
-apiVersion: terraformcontroller.cattle.io/v1
-kind: Module
-metadata:
-  name: tf-module
-spec:
-  git:
-    url: http://tf-git/tf-module-fake.git
