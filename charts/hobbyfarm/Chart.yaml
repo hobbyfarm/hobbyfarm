@@ -2,13 +2,13 @@ apiVersion: v2
 name: hobbyfarm
 description: Interactive coding platform in a browser
 type: application
-version: 2.0.7
+version: 2.0.8
 appVersion: 2.0.3
 maintainers:
   - name: ebauman
     email: eamon@eamonbauman.com
-  - name: byteloop
-    email: Jan-Gerrit.Goebel@sva.de
+  - name: jggoebel
+    email: jan-gerrit.goebel@brebit.de
   - name: devpro
     email: bertrand@devpro.fr
 sources:
