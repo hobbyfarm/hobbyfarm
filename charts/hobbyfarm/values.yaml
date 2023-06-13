@@ -1,5 +1,5 @@
 admin:
-  image: hobbyfarm/admin-ui:v2.0.3
+  image: hobbyfarm/admin-ui:v3.0.0
   # configMapName: admin-config
   # config:
     # title: HobbyFarm Administration
@@ -9,7 +9,7 @@ admin:
       # background: assets/default/vault.jpg
     # logo: /assets/default/logo.svg
 ui:
-  image: hobbyfarm/ui:v2.0.2
+  image: hobbyfarm/ui:v3.0.0
   # configMapName: ui-config
   # config:
     # title: HobbyFarm Learn
@@ -31,7 +31,7 @@ ui:
       # /* Some custom css */
     # }
 gargantua:
-  image: hobbyfarm/gargantua:v2.0.4
+  image: hobbyfarm/gargantua:v3.0.0
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
