@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: authn-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    component: authn-service
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.authn.apiPort }}
+  - name: grpc
+    protocol: TCP
+    port: {{ .Values.authn.grpcPort }}
