@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: gargantua
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
       containers:
@@ -31,17 +33,23 @@ spec:
               value: {{ .Release.Namespace | quote }}
             - name: PORT
               value: {{ .Values.gargantua.apiPort | quote }}
-            - name: WEBHOOK_PORT
-              value: {{ .Values.gargantua.webhook.containerPort | quote }}
           ports:
-            - containerPort: {{ .Values.gargantua.webhook.containerPort}}
             - containerPort: {{ .Values.gargantua.apiPort }}
           volumeMounts:
-            - name: webhook-secret
-              mountPath: "/webhook-secret"
-              readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
       volumes:
-        - name: webhook-secret
-          secret:
-            secretName: hobbyfarm-webhook-secret
-            optional: false
+      - name: auth-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
