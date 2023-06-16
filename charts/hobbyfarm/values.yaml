@@ -30,6 +30,33 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
+authn:
+  # image: not available yet
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  grpcPort: 8080
+authr:
+  # image: not available yet
+  replicas: 1
+  logLevel: "0"
+  grpcPort: 8080
+conversion:
+  # image: not available yet
+  containerPort: 444
+  servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
+rbac:
+  # image: not available yet
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  grpcPort: 8080
+user:
+  # image: not available yet
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  grpcPort: 8080
 gargantua:
   image: hobbyfarm/gargantua:v2.0.4
   logLevel: "0"
@@ -37,10 +64,6 @@ gargantua:
   scheduledBaseNamePrefix: "scheduled"
   serviceAccountName: "hobbyfarm-gargantua"
   apiPort: 80
-  webhook:
-    containerPort: 444
-    # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
-    servicePort: 443
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
