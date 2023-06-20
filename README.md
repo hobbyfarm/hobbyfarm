@@ -8,7 +8,8 @@ There is a GitHub Actions [Workflow](https://github.com/hobbyfarm/hobbyfarm/acti
 
 | Date | Version |
 |------|---------|
-| 31 MAY 2023 | v3.0.0 |
+| 20 JUNE 2023 | v3.0.0 |
+| 31 SEPTEMBER 2023 | v4.0.0 |
 
 ## Releases & Versioning
 
