@@ -7,10 +7,10 @@ data:
   config.json: |
     {
         "title": {{ $.Values.admin.config.title | quote }},
-        "favicon": {{ $.Values.admin.config.favicon | quote }},
+        "favicon": {{ $.Values.ui.config.favicon | quote }},
         "login": {
-            "logo": {{ $.Values.admin.config.login.logo | quote }},
+            "logo": {{ $.Values.ui.config.login.logo | quote }},
             "background": {{ $.Values.admin.config.login.background | quote }}
         },
-        "logo": {{ $.Values.admin.config.logo | quote }}
+        "logo": {{ $.Values.ui.config.logo | quote }}
     }
