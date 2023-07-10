@@ -3,6 +3,7 @@ admin: # defaults for admin service
   image: hobbyfarm/admin-ui:v3.0.0
   configMapName: admin-config
   config:
+    title: HobbyFarm Learn
     login:
       background: assets/default/vault.jpg
 
