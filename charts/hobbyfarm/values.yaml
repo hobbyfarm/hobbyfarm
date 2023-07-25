@@ -30,6 +30,11 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
+accesscode:
+  # image: not available yet
+  replicas: 1
+  logLevel: "0"
+  grpcPort: 8080
 authn:
   # image: not available yet
   replicas: 1
