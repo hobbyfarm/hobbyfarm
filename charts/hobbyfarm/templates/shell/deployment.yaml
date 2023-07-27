@@ -28,3 +28,13 @@ spec:
           env:
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace }}
+          volumeMounts:
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: auth-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
