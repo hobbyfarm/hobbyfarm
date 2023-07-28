@@ -4,7 +4,6 @@ kind: ConfigMap
 metadata:
   name: ui-config
 data:
-  {{- if $.Values.ui.config }}
   config.json: |
     {
         "title": {{ $.Values.ui.config.title | quote }},
@@ -15,7 +14,6 @@ data:
         },
         "logo": {{ $.Values.ui.config.logo | quote }},
         "about": {
-            {{ if $.Values.ui.config.about -}}
             "title": {{ $.Values.ui.config.about.title | default "" | quote }},
             "body": {{ $.Values.ui.config.about.body | default "" | quote }},
             "buttons": [
@@ -26,10 +24,8 @@ data:
             }{{ if ne (add1 $index) (len $.Values.ui.config.about.buttons) }},{{ end }}
             {{- end }}
             ]
-            {{- end }}
         }
     }
-  {{- end }}
   {{- if $.Values.ui.custom }}
   custom.css: {{ $.Values.ui.custom | quote }}
   {{- end }}
