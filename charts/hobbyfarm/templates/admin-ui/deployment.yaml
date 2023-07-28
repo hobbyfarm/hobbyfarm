@@ -34,7 +34,7 @@ spec:
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
             {{- end }}
-            {{- if $.Values.ui.config.login.customlogo }}
+            {{- if $.Values.admin.config.login.customlogo }}
             - name: customlogo
               mountPath: /usr/share/nginx/html/assets/default/rancher-labs-stacked-color.svg
               subPath: rancher-labs-stacked-color.svg
@@ -45,10 +45,10 @@ spec:
           configMap:
             name: {{ $.Values.admin.configMapName }}
         {{- end }}
-        {{- if $.Values.ui.config.login.customlogo }}
+        {{- if $.Values.admin.config.login.customlogo }}
         - name: customlogo
           configMap:
-            name: {{ $.Values.ui.config.login.customlogo }}
+            name: {{ $.Values.admin.config.login.customlogo }}
         {{- end }}
 
 

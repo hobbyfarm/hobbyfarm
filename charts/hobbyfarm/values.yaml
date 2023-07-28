@@ -1,11 +1,16 @@
-
 admin: # defaults for admin service
   image: hobbyfarm/admin-ui:v3.0.0
-  configMapName: admin-config
+  # configMapName: admin-config
   config:
-    title: HobbyFarm Learn
+    title: HobbyFarm Administration
+    favicon: /assets/default/favicon.png
     login:
+      # for custom logo it has to be an SVG - also applies to admin ui
+      # example - kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=rfed-logo-stacked.svg
+      customlogo: # secret that contains svg as file 
+      logo: /assets/default/rancher-labs-stacked-color.svg
       background: assets/default/vault.jpg
+    logo: /assets/default/logo.svg
 
 ui: # defaults for UI service
   image: hobbyfarm/ui:v3.0.0
