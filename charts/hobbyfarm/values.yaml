@@ -71,6 +71,7 @@ ingress:
     #   admin: admin-tls-secret # admin ui
     #   ui: ui-tls-secret # user frontend "learn" ui
     #   shell: shell-tls-secret # shell proxy
+
   hostnames:
     # ui: example.com
     # admin: admin.example.com
