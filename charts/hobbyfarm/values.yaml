@@ -71,14 +71,12 @@ ingress:
     #   admin: admin-tls-secret # admin ui
     #   ui: ui-tls-secret # user frontend "learn" ui
     #   shell: shell-tls-secret # shell proxy
+
   hostnames:
     # ui: example.com
     # admin: admin.example.com
     # backend: hf.example.com
     # shell: shell.example.com
-    ranchervm: {}
-      # frontend: vm.example.com
-      # backend: vmapi.example.com
 
 users:
   admin:
@@ -97,15 +95,3 @@ terraform:
     image: rancher/terraform-controller
     tag: "v0.0.13-alpha1"
     threads: 2
-
-# https://github.com/hobbyfarm/vm
-ranchervm:
-  enabled: false
-  nic: "eth0"
-  bridge: "en0"
-  # bridge: "docker0"
-  image:
-    vm: rancher/vm:v0.2.0
-    frontend: rancher/vm-frontend:v0.2.0
-    novnc: rancher/vm-novnc:v0.2.0
-    tools: rancher/vm-tools:v0.2.0
