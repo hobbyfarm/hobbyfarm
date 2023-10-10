@@ -35,6 +35,7 @@ accesscode:
   replicas: 1
   logLevel: "0"
   grpcPort: 8080
+  serviceAccountName: "hobbyfarm-accesscode"
 authn:
   # image: not available yet
   replicas: 1
@@ -56,12 +57,14 @@ rbac:
   logLevel: "0"
   apiPort: 80
   grpcPort: 8080
+  serviceAccountName: "hobbyfarm-rbac"
 user:
   # image: not available yet
   replicas: 1
   logLevel: "0"
   apiPort: 80
   grpcPort: 8080
+  serviceAccountName: "hobbyfarm-user"
 gargantua:
   image: hobbyfarm/gargantua:v3.0.0
   logLevel: "0"

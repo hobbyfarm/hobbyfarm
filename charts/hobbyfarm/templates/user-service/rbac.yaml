@@ -2,29 +2,29 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: rbac-{{ .Release.Namespace }}
+  name: user-{{ .Release.Namespace }}
 rules:
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["clusterroles", "clusterrolebindings"]
-    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: rbac-{{ .Release.Namespace }}
+  name: user-{{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.rbac.serviceAccountName }}
+    name: {{ .Values.user.serviceAccountName }}
 roleRef:
   kind: ClusterRole
-  name: rbac-{{ .Release.Namespace }}
+  name: user-{{ .Release.Namespace }}
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: rbacsvc
+  name: usersvc
 rules:
   - apiGroups: [""]
     resources: ["*"]
@@ -32,19 +32,19 @@ rules:
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
     verbs: ["*"]
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["roles", "rolebindings"]
+  - apiGroups: ["hobbyfarm.io"]
+    resources: ["users"]
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: rbacsvc
+  name: usersvc
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.rbac.serviceAccountName }}
+    name: {{ .Values.user.serviceAccountName }}
 roleRef:
   kind: Role
-  name: rbacsvc
+  name: usersvc
   apiGroup: rbac.authorization.k8s.io
