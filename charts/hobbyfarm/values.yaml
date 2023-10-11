@@ -51,6 +51,7 @@ conversion:
   # image: not available yet
   containerPort: 444
   servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
+  serviceAccountName: "hobbyfarm-conversion"
 rbac:
   # image: not available yet
   replicas: 1

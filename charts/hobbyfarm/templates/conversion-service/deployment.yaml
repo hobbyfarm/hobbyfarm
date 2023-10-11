@@ -15,6 +15,7 @@ spec:
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/conversion-service/secret.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: {{ .Values.conversion.serviceAccountName }}
       containers:
         - name: conversion-service
           image: {{ $.Values.conversion.image }}
