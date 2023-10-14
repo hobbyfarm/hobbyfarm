@@ -1,55 +1,63 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authn-service
+  name: setting-service
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ $.Values.authn.replicas }}
+  replicas: {{ $.Values.setting.replicas }}
   selector:
     matchLabels:
-      component: authn-service
+      component: setting-service
   template:
     metadata:
       labels:
-        component: authn-service
+        component: setting-service
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
-      serviceAccountName: {{ .Values.authn.serviceAccountName }}
+      serviceAccountName: {{ .Values.setting.serviceAccountName }}
       containers:
-        - name: authn-service
-          image: {{ $.Values.authn.image }}
-          command: ["authnsvc"]
+        - name: setting-service
+          image: {{ $.Values.setting.image }}
+          command: ["settingsvc"]
           args:
           - "-v=9"
           - "-logtostderr"
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.authn.logLevel | quote }}
+              value: {{ $.Values.setting.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
-              value: {{ .Values.authn.apiPort | quote }}
+              value: {{ .Values.setting.apiPort | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.authn.grpcPort | quote }}
+              value: {{ .Values.setting.grpcPort | quote }}
           ports:
-          - containerPort: {{ .Values.authn.apiPort }}
-          - containerPort: {{ .Values.authn.grpcPort }}
+          - containerPort: {{ .Values.setting.apiPort }}
+          - containerPort: {{ .Values.setting.grpcPort }}
           volumeMounts:
-          - name: authn-secret
+          - name: setting-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
             readOnly: true
-          - name: authn-secret
+          - name: setting-secret
             mountPath: "/etc/ssl/certs/tls.key"
             subPath: tls.key
             readOnly: true
-          - name: authn-secret
+          - name: setting-secret
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
       volumes:
-      - name: authn-secret
+      - name: setting-secret
         secret:
           secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
           optional: false

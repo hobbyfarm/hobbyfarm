@@ -38,6 +38,7 @@ accesscode:
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-authn"
   replicas: 1
   logLevel: "0"
   apiPort: 80
@@ -59,6 +60,13 @@ rbac:
   apiPort: 80
   grpcPort: 8080
   serviceAccountName: "hobbyfarm-rbac"
+setting:
+  # image: not available yet
+  serviceAccountName: "hobbyfarm-setting"
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  grpcPort: 8080
 user:
   # image: not available yet
   replicas: 1
