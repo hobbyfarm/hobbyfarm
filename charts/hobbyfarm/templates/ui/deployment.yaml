@@ -28,12 +28,16 @@ spec:
               {{- else }}
               value: gargantua
               {{- end }}
-      {{- if $.Values.ui.configMapName }}
           volumeMounts:
-            {{- if $.Values.ui.config }}
+            {{- if $.Values.ui.configMapName }}
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
+            {{- end }}
+            {{- if $.Values.ui.config.login.customlogo }}
+            - name: customlogo
+              mountPath: /usr/share/nginx/html/assets/default/rancher-labs-stacked-color.svg
+              subPath: rancher-labs-stacked-color.svg
             {{- end }}
             {{- if $.Values.ui.custom }}
             - name: config
@@ -44,4 +48,9 @@ spec:
         - name: config
           configMap:
             name: {{ $.Values.ui.configMapName }}
-      {{- end }}
+        {{- if $.Values.ui.config.login.customlogo }}
+        - name: customlogo
+          configMap:
+            name: {{ $.Values.ui.config.login.customlogo }}
+        {{- end }}
+

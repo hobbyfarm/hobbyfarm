@@ -42,14 +42,6 @@ spec:
   git:
     url: {{ module_repo }}
 ```
-  ### ranchervm:
-    module: tf-module
-    module_repo: https://github.com/hobbyfarm/tf-module-rvm
-    image: rancher/vm-ubuntu:16.04.5-server-amd64
-    endpoint: "http://backend.ranchervm-system:9500"
-    access_key: ''
-    secret_key: ''
-
   ### google:
     module: tf-module
     module_repo: https://github.com/boxboat/tf-module-google

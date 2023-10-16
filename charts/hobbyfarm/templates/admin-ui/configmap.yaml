@@ -4,7 +4,6 @@ kind: ConfigMap
 metadata:
   name: admin-config
 data:
-  {{- if $.Values.admin.config }}
   config.json: |
     {
         "title": {{ $.Values.admin.config.title | quote }},
@@ -15,4 +14,3 @@ data:
         },
         "logo": {{ $.Values.admin.config.logo | quote }}
     }
-  {{- end }}
