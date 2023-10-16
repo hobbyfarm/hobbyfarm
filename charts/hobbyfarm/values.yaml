@@ -45,6 +45,7 @@ authn:
   grpcPort: 8080
 authr:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-authr"
   replicas: 1
   logLevel: "0"
   grpcPort: 8080
