@@ -51,20 +51,20 @@ spec:
               name: rbac-service
               port: 
                 number: 80
-      - pathType: Prefix
-        path: "/setting"
-        backend:
-          service:
-            name: setting-service
-            port: 
-              number: 80
-      - pathType: Prefix
-        path: "/scope"
-        backend:
-          service:
-            name: setting-service
-            port: 
-              number: 80
+        - pathType: Prefix
+          path: "/setting"
+          backend:
+            service:
+              name: setting-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/scope"
+          backend:
+            service:
+              name: setting-service
+              port: 
+                number: 80
         - pathType: Prefix
           path: "/"
           backend:
