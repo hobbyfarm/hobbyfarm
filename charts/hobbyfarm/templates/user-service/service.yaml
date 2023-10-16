@@ -12,4 +12,4 @@ spec:
     port: {{ .Values.user.apiPort }}
   - name: grpc
     protocol: TCP
-    port: {{ .Values.user.grpcPort }}
+    port: 8080

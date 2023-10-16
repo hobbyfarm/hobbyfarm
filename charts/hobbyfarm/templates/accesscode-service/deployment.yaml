@@ -29,9 +29,9 @@ spec:
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.accesscode.grpcPort | quote }}
+              value: 8080
           ports:
-          - containerPort: {{ .Values.accesscode.grpcPort }}
+          - containerPort: 8080
           volumeMounts:
           - name: accesscode-secret
             mountPath: "/etc/ssl/certs/ca.crt"

@@ -12,4 +12,4 @@ spec:
     port: {{ .Values.authn.apiPort }}
   - name: grpc
     protocol: TCP
-    port: {{ .Values.authn.grpcPort }}
+    port: 8080

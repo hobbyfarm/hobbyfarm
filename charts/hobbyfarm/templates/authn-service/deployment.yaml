@@ -31,10 +31,10 @@ spec:
             - name: PORT
               value: {{ .Values.authn.apiPort | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.authn.grpcPort | quote }}
+              value: 8080
           ports:
           - containerPort: {{ .Values.authn.apiPort }}
-          - containerPort: {{ .Values.authn.grpcPort }}
+          - containerPort: 8080
           volumeMounts:
           - name: authn-secret
             mountPath: "/etc/ssl/certs/ca.crt"

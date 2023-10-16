@@ -31,10 +31,10 @@ spec:
             - name: PORT
               value: {{ .Values.setting.apiPort | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.setting.grpcPort | quote }}
+              value: 8080
           ports:
           - containerPort: {{ .Values.setting.apiPort }}
-          - containerPort: {{ .Values.setting.grpcPort }}
+          - containerPort: 8080
           volumeMounts:
           - name: setting-secret
             mountPath: "/etc/ssl/certs/ca.crt"
