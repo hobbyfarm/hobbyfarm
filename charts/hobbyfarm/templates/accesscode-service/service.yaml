@@ -9,4 +9,4 @@ spec:
   ports:
   - name: grpc
     protocol: TCP
-    port: {{ .Values.accesscode.grpcPort }}
+    port: 8080
