@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: authr-service
+  name: setting-service-grpc
   namespace: {{ .Release.Namespace }}
 spec:
+  clusterIP: None
   selector:
-    component: authr-service
+    component: setting-service
   ports:
   - name: grpc
     protocol: TCP
-    port: 8080
+    port: 8080 

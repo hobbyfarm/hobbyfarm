@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: accesscode-service
+  name: authn-service-grpc
   namespace: {{ .Release.Namespace }}
 spec:
+  clusterIP: None
   selector:
-    component: accesscode-service
+    component: authn-service
   ports:
   - name: grpc
     protocol: TCP
