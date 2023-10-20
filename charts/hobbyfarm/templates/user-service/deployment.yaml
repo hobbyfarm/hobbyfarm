@@ -31,7 +31,7 @@ spec:
             - name: PORT
               value: {{ .Values.user.apiPort | quote }}
             - name: GRPC_PORT
-              value: 8080
+              value: "8080"
           ports:
           - containerPort: {{ .Values.user.apiPort }}
           - containerPort: 8080
