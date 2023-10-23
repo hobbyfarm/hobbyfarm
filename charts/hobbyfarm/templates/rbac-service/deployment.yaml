@@ -19,7 +19,7 @@ spec:
       containers:
         - name: rbac-service
           image: {{ $.Values.rbac.image }}
-          command: ["rbacsvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

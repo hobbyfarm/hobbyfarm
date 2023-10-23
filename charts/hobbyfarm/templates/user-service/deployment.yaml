@@ -19,7 +19,7 @@ spec:
       containers:
         - name: user-service
           image: {{ $.Values.user.image }}
-          command: ["usersvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

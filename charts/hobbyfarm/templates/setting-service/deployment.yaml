@@ -19,7 +19,7 @@ spec:
       containers:
         - name: setting-service
           image: {{ $.Values.setting.image }}
-          command: ["settingsvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

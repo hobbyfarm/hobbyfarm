@@ -19,7 +19,7 @@ spec:
       containers:
         - name: authr-service
           image: {{ $.Values.authr.image }}
-          command: ["authrsvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

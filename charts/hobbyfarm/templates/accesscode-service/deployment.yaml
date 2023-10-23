@@ -19,7 +19,7 @@ spec:
       containers:
         - name: accesscode-service
           image: {{ $.Values.accesscode.image }}
-          command: ["accesscodesvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

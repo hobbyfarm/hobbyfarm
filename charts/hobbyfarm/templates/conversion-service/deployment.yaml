@@ -19,7 +19,7 @@ spec:
       containers:
         - name: conversion-service
           image: {{ $.Values.conversion.image }}
-          command: ["conversionsvc"]
+          command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"

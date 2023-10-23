@@ -18,7 +18,7 @@ spec:
       containers:
         - name: gargantua
           image: {{ $.Values.gargantua.image }}
-          command: ["gargantua"]
+          command: ["app"]
           args:
             - "-v=9"
             - "-logtostderr"
