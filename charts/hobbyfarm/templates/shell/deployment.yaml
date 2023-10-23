@@ -22,7 +22,7 @@ spec:
         - name: gargantua
           image: {{ $.Values.gargantua.image }}
           command:
-            - gargantua
+            - app
             - -alsologtostderr
             - -v=9
             - -shellserver
