@@ -38,40 +38,40 @@ ui: # defaults for UI service
       # /* Some custom css */
     # }
 accesscode:
-  # image: not available yet
+  image: hobbyfarm/accesscode-service:v3.1.0
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
-  # image: not available yet
+  image: hobbyfarm/authn-service:v3.1.0
   serviceAccountName: "hobbyfarm-authn"
   replicas: 1
   logLevel: "0"
   apiPort: 80
 authr:
-  # image: not available yet
+  image: hobbyfarm/authr-service:v3.1.0
   serviceAccountName: "hobbyfarm-authr"
   replicas: 1
   logLevel: "0"
 conversion:
-  # image: not available yet
+  image: hobbyfarm/conversion-service:v3.1.0
   containerPort: 444
   servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
 rbac:
-  # image: not available yet
+  image: hobbyfarm/rbac-service:v3.1.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-rbac"
 setting:
-  # image: not available yet
+  image: hobbyfarm/setting-service:v3.1.0
   serviceAccountName: "hobbyfarm-setting"
   replicas: 1
   logLevel: "0"
   apiPort: 80
 user:
-  # image: not available yet
+  image: hobbyfarm/user-service:v3.1.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
