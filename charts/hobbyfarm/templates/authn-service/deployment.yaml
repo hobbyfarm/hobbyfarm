@@ -1,55 +1,55 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gargantua
+  name: authn-service
+  namespace: {{ .Release.Namespace }}
 spec:
+  replicas: {{ $.Values.authn.replicas }}
   selector:
     matchLabels:
-      component: gargantua
+      component: authn-service
   template:
     metadata:
       labels:
-        component: gargantua
+        component: authn-service
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
-      serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
+      serviceAccountName: {{ .Values.authn.serviceAccountName }}
       containers:
-        - name: gargantua
-          image: {{ $.Values.gargantua.image }}
+        - name: authn-service
+          image: {{ $.Values.authn.image }}
           command: ["app"]
           args:
-            - "-v=9"
-            - "-logtostderr"
+          - "-v=9"
+          - "-logtostderr"
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.gargantua.logLevel | quote }}
-            - name: HF_BASENAME_SCHEDULED_PREFIX
-              value: {{ $.Values.gargantua.scheduledBaseNamePrefix | quote }}
-            - name: HF_BASENAME_DYNAMIC_PREFIX
-              value: {{ $.Values.gargantua.dynamicBaseNamePrefix | quote }}
+              value: {{ $.Values.authn.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
-              value: {{ .Values.gargantua.apiPort | quote }}
+              value: {{ .Values.authn.apiPort | quote }}
+            - name: GRPC_PORT
+              value: "8080"
           ports:
-            - containerPort: {{ .Values.gargantua.apiPort }}
+          - containerPort: {{ .Values.authn.apiPort }}
+          - containerPort: 8080
           volumeMounts:
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
             readOnly: true
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/tls.key"
             subPath: tls.key
             readOnly: true
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
       volumes:
-      - name: auth-secret
+      - name: authn-secret
         secret:
           secretName: hobbyfarm-grpc-secret
           optional: false

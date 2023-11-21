@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    component: user-service
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.user.apiPort }}

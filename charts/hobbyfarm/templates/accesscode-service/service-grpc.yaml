@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: accesscode-service-grpc
+  namespace: {{ .Release.Namespace }}
+spec:
+  clusterIP: None
+  selector:
+    component: accesscode-service
+  ports:
+  - name: grpc
+    protocol: TCP
+    port: 8080

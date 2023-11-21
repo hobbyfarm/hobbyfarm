@@ -2,14 +2,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gargantua-{{ .Release.Namespace }}
+  name: setting-{{ .Release.Namespace }}
 rules:
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
     verbs: ["*"]
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["clusterroles", "clusterrolebindings"]
-    verbs: ["get", "list", "watch"]
   - apiGroups: ["admissionregistration.k8s.io"]
     resources: ["*"]
     verbs: ["*"]
@@ -17,20 +14,20 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: gargantua-{{ .Release.Namespace }}
+  name: setting-{{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.gargantua.serviceAccountName }}
+    name: {{ .Values.setting.serviceAccountName }}
 roleRef:
   kind: ClusterRole
-  name: gargantua-{{ .Release.Namespace }}
+  name: setting-{{ .Release.Namespace }}
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: gargantua
+  name: settingsvc
 rules:
   - apiGroups: [""]
     resources: ["*"]
@@ -39,21 +36,18 @@ rules:
     resources: ["leases"]
     verbs: ["*"]
   - apiGroups: ["hobbyfarm.io"]
-    resources: ["*"]
-    verbs: ["*"]
-  - apiGroups: ["terraformcontroller.cattle.io"]
-    resources: ["*"]
+    resources: ["settings", "scopes"]
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: gargantua
+  name: settingsvc
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.gargantua.serviceAccountName }}
+    name: {{ .Values.setting.serviceAccountName }}
 roleRef:
   kind: Role
-  name: gargantua
+  name: settingsvc
   apiGroup: rbac.authorization.k8s.io

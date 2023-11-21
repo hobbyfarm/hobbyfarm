@@ -9,15 +9,3 @@ spec:
   ports:
     - name: http
       port: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hobbyfarm-webhook
-spec:
-  selector:
-    component: gargantua
-  ports:
-    - name: webhook
-      port: {{ .Values.gargantua.webhook.servicePort }}
-      targetPort: {{ .Values.gargantua.webhook.containerPort }}

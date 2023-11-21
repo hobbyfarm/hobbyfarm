@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversion-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.conversion.replicas }}
+  selector:
+    matchLabels:
+      component: conversion-service
+  template:
+    metadata:
+      labels:
+        component: conversion-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/conversion-service/secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.conversion.serviceAccountName }}
+      containers:
+        - name: conversion-service
+          image: {{ $.Values.conversion.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.conversion.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: WEBHOOK_PORT
+              value: {{ .Values.conversion.containerPort | quote }}
+          ports:
+          - containerPort: {{ .Values.conversion.containerPort}}
+          volumeMounts:
+          - name: webhook-secret
+            mountPath: "/etc/ssl/certs"
+            readOnly: true
+      volumes:
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false

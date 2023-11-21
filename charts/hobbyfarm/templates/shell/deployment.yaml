@@ -14,13 +14,15 @@ spec:
     metadata:
       labels:
         app: gargantua-shell
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
       containers:
         - name: gargantua
           image: {{ $.Values.gargantua.image }}
           command:
-            - gargantua
+            - app
             - -alsologtostderr
             - -v=9
             - -shellserver
@@ -28,3 +30,13 @@ spec:
           env:
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace }}
+          volumeMounts:
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: auth-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false

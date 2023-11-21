@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: conversion
+rules:
+  - apiGroups: ["hobbyfarm.io"]
+    resources: ["*"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: conversion
+subjects:
+  - kind: ServiceAccount
+    namespace: {{ .Release.Namespace }}
+    name: {{ .Values.conversion.serviceAccountName }}
+roleRef:
+  kind: Role
+  name: conversion
+  apiGroup: rbac.authorization.k8s.io

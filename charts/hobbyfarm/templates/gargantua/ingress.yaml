@@ -16,13 +16,62 @@ spec:
     - host: {{ $.Values.ingress.hostnames.backend }}
       http:
         paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: gargantua
-                port:
-                  number: 80
+        - pathType: Prefix
+          path: "/auth/scheduledevents"
+          backend:
+            service:
+              name: gargantua
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/auth"
+          backend:
+            service:
+              name: authn-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/a/user"
+          backend:
+            service:
+              name: user-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/a/roles"
+          backend:
+            service:
+              name: rbac-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/a/rolebindings"
+          backend:
+            service:
+              name: rbac-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/setting"
+          backend:
+            service:
+              name: setting-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/scope"
+          backend:
+            service:
+              name: setting-service
+              port: 
+                number: 80
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: gargantua
+              port: 
+                number: 80
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
