@@ -77,7 +77,7 @@ user:
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
 gargantua:
-  image: hobbyfarm/gargantua:v3.0.0
+  image: hobbyfarm/gargantua:v3.1.0
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
