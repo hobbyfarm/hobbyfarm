@@ -33,4 +33,4 @@ Contributions of all kinds are welcome and encouraged. HobbyFarm is actively see
 * **Documentation**
 * Project Organization
 
-Contribution docs are in-progress. In the meantime, please reach us via Slack in the `#hobbyfarm` channel on [Rancher Users](https://slack.rancher.io) or via issue in this repository.
+Contribution docs are in-progress. In the meantime, please reach us via Slack in the `#hobbyfarm-dev` channel on [Building Open Source Slack](https://buildingopensource.slack.com/archives/C06DG87MRA9) or via issue in this repository.
