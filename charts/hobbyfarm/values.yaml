@@ -68,9 +68,11 @@ setting:
 user:
   image: hobbyfarm/user-service:v3.1.0
   replicas: 1
+  controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
+
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
   logLevel: "0"
