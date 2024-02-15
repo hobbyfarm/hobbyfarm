@@ -15,7 +15,7 @@ data:
         "logo": {{ $.Values.ui.config.logo | quote }},
         "about": {
             "title": {{ $.Values.ui.config.about.title | default "" | quote }},
-            "body": {{ $.Values.ui.config.about.body | default "" | quote }},
+            "body": {{ $.Values.ui.config.about.body | default "" | quote }}
         }
     }
   {{- if $.Values.ui.custom }}
