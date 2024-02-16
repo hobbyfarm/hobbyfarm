@@ -1,6 +1,6 @@
 {{ if $.Values.users.admin.enabled }}
 ---
-apiVersion: hobbyfarm.io/v1
+apiVersion: hobbyfarm.io/v2
 kind: User
 metadata:
   name: admin
@@ -8,11 +8,24 @@ spec:
   id: admin
   email: admin
   password: {{ $.Values.users.admin.password }}
-  admin: true
   access_codes: []
   settings:
     ctr_enabled: "true"
     ctxAccessCode: example-access-code
     terminal_fontSize: "16"
     terminal_theme: Solarized_Dark_Higher_Contrast
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+    name: hobbyfarm-admin-rolebinding
+    namespace: hobbyfarm-system
+subjects:
+- kind: User
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: hobbyfarm-admin
+  apiGroup: rbac.authorization.k8s.io
 {{ end }}
