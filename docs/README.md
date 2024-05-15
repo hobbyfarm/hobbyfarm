@@ -4,7 +4,6 @@ Hobbyfarm is an interactive coding platform that runs in the browser.
 
 ## install
 Install the [chart](chart.md) with Helm.
-More advanced setup infos can be found [here](https://hobbyfarm.github.io/docs/setup/)
 
 ## syntax
 
