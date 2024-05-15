@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: guacd
-          image: guacamole/guacd
+          image: {{ $.Values.guac.image }}
 ---
 apiVersion: apps/v1
 kind: Deployment
