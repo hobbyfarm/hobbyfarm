@@ -66,6 +66,13 @@ spec:
               port: 
                 number: 80
         - pathType: Prefix
+          path: "/score"
+          backend:
+            service:
+              name: score-service
+              port: 
+                number: 80
+        - pathType: Prefix
           path: "/"
           backend:
             service:
