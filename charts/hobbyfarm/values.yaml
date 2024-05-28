@@ -72,6 +72,10 @@ user:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
+scoreservice:
+  image: hobbyfarm/score-service:v3.1.0
+  logLevel: "0"
+  apiPort: 80
 
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
