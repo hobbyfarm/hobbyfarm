@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.course.replicas }}
+  selector:
+    matchLabels:
+      component: course-service
+  template:
+    metadata:
+      labels:
+        component: course-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.course.serviceAccountName }}
+      containers:
+        - name: course-service
+          image: {{ $.Values.course.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.course.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.course.apiPort | quote }}
+            - name: GRPC_PORT
+              value: "8080"
+          ports:
+          - containerPort: {{ .Values.course.apiPort }}
+          - containerPort: 8080
+          volumeMounts:
+          - name: course-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: course-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: course-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: course-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false
