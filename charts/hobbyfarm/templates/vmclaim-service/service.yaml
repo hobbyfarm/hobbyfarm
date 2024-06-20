@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vmclaim-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    component: vmclaim-service
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.vmclaim.apiPort }}

@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vmclaim-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.vmclaim.replicas }}
+  serviceName: "vmclaim-service"
+  selector:
+    matchLabels:
+      component: vmclaim-service
+  template:
+    metadata:
+      labels:
+        component: vmclaim-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.vmclaim.serviceAccountName }}
+      containers:
+        - name: vmclaim-service
+          image: {{ $.Values.vmclaim.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.vmclaim.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.vmclaim.apiPort | quote }}
+            - name: GRPC_PORT
+              value: "8080"
+            - name: STATEFULSET_NAME
+              value: "vmclaim-service"
+            - name: CONTROLLER_THREAD_COUNT
+              value: {{ .Values.vmclaim.controllerWorkerThreadCount | quote }}
+          ports:
+          - containerPort: {{ .Values.vmclaim.apiPort }}
+          - containerPort: 8080
+          volumeMounts:
+          - name: vmclaim-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: vmclaim-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: vmclaim-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: vmclaim-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false
