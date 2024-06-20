@@ -39,32 +39,91 @@ accesscode:
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
   image: hobbyfarm/authn-service:v3.1.0
-  serviceAccountName: "hobbyfarm-authn"
   replicas: 1
   logLevel: "0"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-authn"
 authr:
   image: hobbyfarm/authr-service:v3.1.0
-  serviceAccountName: "hobbyfarm-authr"
   replicas: 1
   logLevel: "0"
+  serviceAccountName: "hobbyfarm-authr"
 conversion:
   image: hobbyfarm/conversion-service:v3.1.0
   containerPort: 444
   servicePort: 443  # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
+course:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-course"
+dbconfig:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  serviceAccountName: "hobbyfarm-dbconfig"
+environment:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-environment"
+progress:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-progress"
 rbac:
   image: hobbyfarm/rbac-service:v3.1.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-rbac"
-setting:
-  image: hobbyfarm/setting-service:v3.1.0
-  serviceAccountName: "hobbyfarm-setting"
+scenario:
+  image: #tbd
   replicas: 1
   logLevel: "0"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-scenario"
+scheduledevent:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-scheduledevent"
+session:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-session"
+setting:
+  image: hobbyfarm/setting-service:v3.1.0
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-setting"
+# https://github.com/rancher/terraform-controller
+# You will need a module in order for terraform to work. See /docs/README.md for examples
+terraform:
+  enabled: false
+  executor:
+    image: rancher/terraform-controller-executor
+    tag: "v0.0.13-alpha1"
+  controller:
+    image: rancher/terraform-controller
+    tag: "v0.0.13-alpha1"
+    threads: 2
+  service:
+    image: #tbd
+    replicas: 1
+    logLevel: "0"
+    serviceAccountName: "hobbyfarm-terraform"
 user:
   image: hobbyfarm/user-service:v3.1.0
   replicas: 1
@@ -72,14 +131,43 @@ user:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
+vm:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vm"
+vmclaim:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vmclaim"
+vmset:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vmset"
+vmtemplate:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vmtemplate"
 
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
   logLevel: "0"
-  dynamicBaseNamePrefix: "dynamic"
-  scheduledBaseNamePrefix: "scheduled"
-  serviceAccountName: "hobbyfarm-gargantua"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-gargantua"
+
+general:
+  dynamicBaseNamePrefix: "dynamic" # in use by dbconfig-service and session-service
+  scheduledBaseNamePrefix: "scheduled" # in use by scheduledevent-service and session-service
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
@@ -117,15 +205,3 @@ users:
     enabled: false
     # default value to Sup3r@dmin
     password: $2a$10$9ToKMT37Z7K70xbCVnW9KOzEuPq0JyW/rA06gsukD4U9YfKFjMXTe
-
-# https://github.com/rancher/terraform-controller
-# You will need a module in order for terraform to work. See /docs/README.md for examples
-terraform:
-  enabled: false
-  executor:
-    image: rancher/terraform-controller-executor
-    tag: "v0.0.13-alpha1"
-  controller:
-    image: rancher/terraform-controller
-    tag: "v0.0.13-alpha1"
-    threads: 2
