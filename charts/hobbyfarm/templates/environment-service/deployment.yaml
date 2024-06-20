@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: environment-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.environment.replicas }}
+  selector:
+    matchLabels:
+      component: environment-service
+  template:
+    metadata:
+      labels:
+        component: environment-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.environment.serviceAccountName }}
+      containers:
+        - name: environment-service
+          image: {{ $.Values.environment.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.environment.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.environment.apiPort | quote }}
+            - name: GRPC_PORT
+              value: "8080"
+          ports:
+          - containerPort: {{ .Values.environment.apiPort }}
+          - containerPort: 8080
+          volumeMounts:
+          - name: environment-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: environment-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: environment-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: environment-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false
