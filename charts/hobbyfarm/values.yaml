@@ -33,23 +33,23 @@ ui:  # defaults for UI service
       # /* Some custom css */
     # }
 accesscode:
-  image: hobbyfarm/accesscode-service:v3.1.0
+  image: hobbyfarm/accesscode-service:v3.2.0
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
-  image: hobbyfarm/authn-service:v3.1.0
+  image: hobbyfarm/authn-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-authn"
 authr:
-  image: hobbyfarm/authr-service:v3.1.0
+  image: hobbyfarm/authr-service:v3.2.0
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-authr"
 conversion:
-  image: hobbyfarm/conversion-service:v3.1.0
+  image: hobbyfarm/conversion-service:v3.2.0
   containerPort: 444
   servicePort: 443  # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
@@ -77,7 +77,7 @@ progress:
   apiPort: 80
   serviceAccountName: "hobbyfarm-progress"
 rbac:
-  image: hobbyfarm/rbac-service:v3.1.0
+  image: hobbyfarm/rbac-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
@@ -103,7 +103,7 @@ session:
   apiPort: 80
   serviceAccountName: "hobbyfarm-session"
 setting:
-  image: hobbyfarm/setting-service:v3.1.0
+  image: hobbyfarm/setting-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
@@ -125,7 +125,7 @@ terraform:
     logLevel: "0"
     serviceAccountName: "hobbyfarm-terraform"
 user:
-  image: hobbyfarm/user-service:v3.1.0
+  image: hobbyfarm/user-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
@@ -160,7 +160,7 @@ vmtemplate:
   serviceAccountName: "hobbyfarm-vmtemplate"
 
 gargantua:
-  image: hobbyfarm/gargantua:v3.1.0
+  image: hobbyfarm/gargantua:v3.2.0
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-gargantua"
