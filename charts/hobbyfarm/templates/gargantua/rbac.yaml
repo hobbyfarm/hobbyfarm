@@ -35,13 +35,8 @@ rules:
   - apiGroups: [""]
     resources: ["*"]
     verbs: ["*"]
-  - apiGroups: ["coordination.k8s.io"]
-    resources: ["leases"]
-    verbs: ["*"]
+# @TODO: Restrict this to resources managed by Gargantua (only predefined services left)
   - apiGroups: ["hobbyfarm.io"]
-    resources: ["*"]
-    verbs: ["*"]
-  - apiGroups: ["terraformcontroller.cattle.io"]
     resources: ["*"]
     verbs: ["*"]
 ---
