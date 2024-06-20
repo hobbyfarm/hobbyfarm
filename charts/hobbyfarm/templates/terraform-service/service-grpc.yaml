@@ -1,0 +1,15 @@
+{{ if .Values.terraform.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: terraform-service-grpc
+  namespace: {{ .Release.Namespace }}
+spec:
+  clusterIP: None
+  selector:
+    component: terraform-service
+  ports:
+  - name: grpc
+    protocol: TCP
+    port: 8080
+{{ end }}
