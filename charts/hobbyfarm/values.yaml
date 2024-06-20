@@ -54,24 +54,24 @@ conversion:
   servicePort: 443  # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
 course:
-  image: #tbd
+  image: hobbyfarm/course-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-course"
 dbconfig:
-  image: #tbd
+  image: hobbyfarm/dbconfig-service:v3.2.0
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-dbconfig"
 environment:
-  image: #tbd
+  image: hobbyfarm/environment-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-environment"
 progress:
-  image: #tbd
+  image: hobbyfarm/progress-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
@@ -83,20 +83,20 @@ rbac:
   apiPort: 80
   serviceAccountName: "hobbyfarm-rbac"
 scenario:
-  image: #tbd
+  image: hobbyfarm/scenario-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scenario"
 scheduledevent:
-  image: #tbd
+  image: hobbyfarm/scheduledevent-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scheduledevent"
 session:
-  image: #tbd
+  image: hobbyfarm/session-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
@@ -120,7 +120,7 @@ terraform:
     tag: "v0.0.13-alpha1"
     threads: 2
   service:
-    image: #tbd
+    image: hobbyfarm/terraform-service:v3.2.0
     replicas: 1
     logLevel: "0"
     serviceAccountName: "hobbyfarm-terraform"
@@ -132,28 +132,28 @@ user:
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
 vm:
-  image: #tbd
+  image: hobbyfarm/vm-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vm"
 vmclaim:
-  image: #tbd
+  image: hobbyfarm/vmclaim-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmclaim"
 vmset:
-  image: #tbd
+  image: hobbyfarm/vmset-service:v3.2.0
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmset"
 vmtemplate:
-  image: #tbd
+  image: hobbyfarm/vmtemplate-service:v3.2.0
   replicas: 1
   logLevel: "0"
   apiPort: 80
