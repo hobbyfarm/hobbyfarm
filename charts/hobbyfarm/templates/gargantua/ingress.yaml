@@ -16,62 +16,168 @@ spec:
     - host: {{ $.Values.ingress.hostnames.backend }}
       http:
         paths:
+        # vmtemplate-service
         - pathType: Prefix
-          path: "/auth/scheduledevents"
+          path: "/a/vmtemplate"
           backend:
             service:
-              name: gargantua
+              name: vmtemplate-service
               port: 
-                number: 80
+                number: {{ $.Values.vmtemplate.apiPort }}
+        # vmset-service
         - pathType: Prefix
-          path: "/auth"
+          path: "/a/vmset"
           backend:
             service:
-              name: authn-service
+              name: vmset-service
               port: 
-                number: 80
+                number: {{ $.Values.vmset.apiPort }}
+        # vmclaim-service
+        - pathType: Prefix
+          path: "/vmclaim"
+          backend:
+            service:
+              name: vmclaim-service
+              port: 
+                number: {{ $.Values.vmclaim.apiPort }}
+        # vm-service
+        - pathType: Prefix
+          path: "/a/vm"
+          backend:
+            service:
+              name: vm-service
+              port: 
+                number: {{ $.Values.vm.apiPort }}
+        - pathType: Prefix
+          path: "/vm"
+          backend:
+            service:
+              name: vm-service
+              port: 
+                number: {{ $.Values.vm.apiPort }}
+        # user-service
         - pathType: Prefix
           path: "/a/user"
           backend:
             service:
               name: user-service
               port: 
-                number: 80
-        - pathType: Prefix
-          path: "/a/roles"
-          backend:
-            service:
-              name: rbac-service
-              port: 
-                number: 80
-        - pathType: Prefix
-          path: "/a/rolebindings"
-          backend:
-            service:
-              name: rbac-service
-              port: 
-                number: 80
+                number: {{ $.Values.user.apiPort }}
+        # setting-service
         - pathType: Prefix
           path: "/setting"
           backend:
             service:
               name: setting-service
               port: 
-                number: 80
+                number: {{ $.Values.setting.apiPort }}
         - pathType: Prefix
           path: "/scope"
           backend:
             service:
               name: setting-service
               port: 
-                number: 80
+                number: {{ $.Values.setting.apiPort }}
+        # session-service
+        - pathType: Prefix
+          path: "/session"
+          backend:
+            service:
+              name: session-service
+              port: 
+                number: {{ $.Values.session.apiPort }}
+        # scheduledevent-service
+        - pathType: Prefix
+          path: "/a/scheduledevent"
+          backend:
+            service:
+              name: scheduledevent-service
+              port: 
+                number: {{ $.Values.scheduledevent.apiPort }}
+        # scenario-service
+        - pathType: Prefix
+          path: "/a/scenario"
+          backend:
+            service:
+              name: scenario-service
+              port: 
+                number: {{ $.Values.scenario.apiPort }}
+        - pathType: Prefix
+          path: "/scenario"
+          backend:
+            service:
+              name: scenario-service
+              port: 
+                number: {{ $.Values.scenario.apiPort }}
+        # rbac-service
+        - pathType: Prefix
+          path: "/a/roles"
+          backend:
+            service:
+              name: rbac-service
+              port: 
+                number: {{ $.Values.rbac.apiPort }}
+        - pathType: Prefix
+          path: "/a/rolebindings"
+          backend:
+            service:
+              name: rbac-service
+              port: 
+                number: {{ $.Values.rbac.apiPort }}
+        # progress-service
+        - pathType: Prefix
+          path: "/a/progress"
+          backend:
+            service:
+              name: progress-service
+              port: 
+                number: {{ $.Values.progress.apiPort }}
+        - pathType: Prefix
+          path: "/progress"
+          backend:
+            service:
+              name: progress-service
+              port: 
+                number: {{ $.Values.progress.apiPort }}
+        # environment-service
+        - pathType: Prefix
+          path: "/a/environment"
+          backend:
+            service:
+              name: environment-service
+              port: 
+                number: {{ $.Values.environment.apiPort }}
+        # course-service
+        - pathType: Prefix
+          path: "/a/course"
+          backend:
+            service:
+              name: course-service
+              port: 
+                number: {{ $.Values.course.apiPort }}
+        - pathType: Prefix
+          path: "/course"
+          backend:
+            service:
+              name: course-service
+              port: 
+                number: {{ $.Values.course.apiPort }}
+        # authn-service
+        - pathType: Prefix
+          path: "/auth"
+          backend:
+            service:
+              name: authn-service
+              port: 
+                number: {{ $.Values.authn.apiPort }}
+        # Gargantua: All routes which are not covered by our microservices are routed to the legacy gargantua API server
         - pathType: Prefix
           path: "/"
           backend:
             service:
               name: gargantua
               port: 
-                number: 80
+                number: {{ $.Values.gargantua.apiPort }}
   {{- if $.Values.ingress.tls.enabled }}
   tls:
     - hosts:
