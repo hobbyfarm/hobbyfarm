@@ -167,9 +167,9 @@ gargantua:
   serviceAccountName: "hobbyfarm-gargantua"
 
 general:
-  dynamicBaseNamePrefix: "dynamic" # in use by dbconfig-service and session-service
-  scheduledBaseNamePrefix: "scheduled" # in use by scheduledevent-service and session-service
-  enableReflection: false # enable/disable reflection for gRPC services... mainly for debugging in dev environments
+  dynamicBaseNamePrefix: "dynamic"  # in use by dbconfig-service and session-service
+  scheduledBaseNamePrefix: "scheduled"  # in use by scheduledevent-service and session-service
+  enableReflection: false  # enable/disable reflection for gRPC services... mainly for debugging in dev environments
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
