@@ -3,7 +3,7 @@ name: hobbyfarm
 description: Interactive coding platform in a browser
 type: application
 version: 3.2.0
-appVersion: 3.0.0
+appVersion: 3.2.0
 maintainers:
   - name: ebauman
     email: eamon@eamonbauman.com
