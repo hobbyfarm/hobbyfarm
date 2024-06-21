@@ -35,7 +35,6 @@ rules:
   - apiGroups: [""]
     resources: ["*"]
     verbs: ["*"]
-# @TODO: Restrict this to resources managed by Gargantua (only predefined services left)
   - apiGroups: ["hobbyfarm.io"]
     resources: ["*"]
     verbs: ["*"]
