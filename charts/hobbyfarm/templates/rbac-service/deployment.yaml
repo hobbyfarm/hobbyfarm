@@ -24,7 +24,7 @@ spec:
           - "-v=9"
           - "-logtostderr"
           - --enableReflection={{ .Values.general.enableReflection }}
-          - --installRBACRoles={{ .Values.general.installRBACRoles }}
+          - --installrbacroles={{ .Values.rbac.installRBACRoles }}
           env:
             - name: LOG_LEVEL
               value: {{ $.Values.rbac.logLevel | quote }}
