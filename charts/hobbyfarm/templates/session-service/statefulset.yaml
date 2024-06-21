@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: session-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.session.replicas }}
+  serviceName: "session-service"
+  selector:
+    matchLabels:
+      component: session-service
+  template:
+    metadata:
+      labels:
+        component: session-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.session.serviceAccountName }}
+      containers:
+        - name: session-service
+          image: {{ $.Values.session.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          - --enableReflection={{ .Values.general.enableReflection }}
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.session.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.session.apiPort | quote }}
+            - name: GRPC_PORT
+              value: "8080"
+            - name: STATEFULSET_NAME
+              value: "session-service"
+            - name: CONTROLLER_THREAD_COUNT
+              value: {{ .Values.session.controllerWorkerThreadCount | quote }}
+            - name: HF_BASENAME_SCHEDULED_PREFIX
+              value: {{ $.Values.general.scheduledBaseNamePrefix | quote }}
+            - name: HF_BASENAME_DYNAMIC_PREFIX
+              value: {{ $.Values.general.dynamicBaseNamePrefix | quote }}
+          ports:
+          - containerPort: {{ .Values.session.apiPort }}
+          - containerPort: 8080
+          volumeMounts:
+          - name: session-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: session-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: session-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: session-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false

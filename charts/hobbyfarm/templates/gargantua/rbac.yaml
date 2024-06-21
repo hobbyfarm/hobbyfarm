@@ -35,13 +35,7 @@ rules:
   - apiGroups: [""]
     resources: ["*"]
     verbs: ["*"]
-  - apiGroups: ["coordination.k8s.io"]
-    resources: ["leases"]
-    verbs: ["*"]
   - apiGroups: ["hobbyfarm.io"]
-    resources: ["*"]
-    verbs: ["*"]
-  - apiGroups: ["terraformcontroller.cattle.io"]
     resources: ["*"]
     verbs: ["*"]
 ---

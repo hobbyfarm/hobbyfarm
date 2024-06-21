@@ -1,0 +1,50 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vmset-{{ .Release.Namespace }}
+rules:
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vmset-{{ .Release.Namespace }}
+subjects:
+  - kind: ServiceAccount
+    namespace: {{ .Release.Namespace }}
+    name: {{ .Values.vmset.serviceAccountName }}
+roleRef:
+  kind: ClusterRole
+  name: vmset-{{ .Release.Namespace }}
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vmsetsvc
+rules:
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["*"]
+  - apiGroups: ["hobbyfarm.io"]
+    resources: ["virtualmachinesets", "virtualmachinesets/status"]
+    verbs: ["*"]
+  - apiGroups: ["apps"]
+    resources: ["statefulsets"]
+    verbs: ["list", "get", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vmsetsvc
+subjects:
+  - kind: ServiceAccount
+    namespace: {{ .Release.Namespace }}
+    name: {{ .Values.vmset.serviceAccountName }}
+roleRef:
+  kind: Role
+  name: vmsetsvc
+  apiGroup: rbac.authorization.k8s.io
