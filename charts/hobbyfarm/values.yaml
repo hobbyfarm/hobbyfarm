@@ -82,6 +82,7 @@ rbac:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-rbac"
+  installRBACRoles: false
 scenario:
   image: hobbyfarm/scenario-service:v3.2.0
   replicas: 1
