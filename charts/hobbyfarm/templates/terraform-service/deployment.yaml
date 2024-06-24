@@ -1,0 +1,63 @@
+{{ if .Values.terraform.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terraform-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ $.Values.terraform.service.replicas }}
+  selector:
+    matchLabels:
+      component: terraform-service
+  template:
+    metadata:
+      labels:
+        component: terraform-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ .Values.terraform.service.serviceAccountName }}
+      containers:
+        - name: terraform-service
+          image: {{ $.Values.terraform.service.image }}
+          command: ["app"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          - --enableReflection={{ .Values.general.enableReflection }}
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.terraform.service.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: GRPC_PORT
+              value: "8080"
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - name: terraform-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: terraform-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: terraform-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook-secret/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+      volumes:
+      - name: terraform-secret
+        secret:
+          secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
+          optional: false
+{{ end }}

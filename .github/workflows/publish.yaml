@@ -18,18 +18,16 @@ jobs:
     - name: check if version was bumped
       run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
     - name: package and release charts
+      env:
+        OWNER: ${{ github.repository_owner }}
+        REPO: ${{ github.event.repository.name }}
+        CR_TOKEN: ${{ secrets.CR_TOKEN }}
       run: |
-        OWNER=${GITHUB_REPOSITORY%%/*}
-        REPO=${GITHUB_REPOSITORY#*/}
-        docker run -v $PWD:/app alpine/helm:3.0.0 package /app/charts/hobbyfarm -d /app/dist
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v0.2.3 cr index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
-    - name: commit updated index.yaml
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "update index.yaml" -a
-    - name: push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        docker run -w /app --entrypoint /bin/sh -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 -c "
+          git config --global --add safe.directory /app &&
+          git config --global user.email 'action@github.com' &&
+          git config --global user.name 'GitHub Action' &&
+          cr package /app/charts/hobbyfarm --package-path /app/dir &&
+          cr upload --owner $OWNER --git-repo $REPO --package-path /app/dir --token $CR_TOKEN --push &&
+          cr index --owner $OWNER --git-repo $REPO --package-path /app/dir --index-path /app/docs/index.yaml --pages-index-path /docs/index.yaml --push --pages-branch master
+        "

@@ -25,10 +25,6 @@ spec:
           env:
             - name: LOG_LEVEL
               value: {{ $.Values.gargantua.logLevel | quote }}
-            - name: HF_BASENAME_SCHEDULED_PREFIX
-              value: {{ $.Values.gargantua.scheduledBaseNamePrefix | quote }}
-            - name: HF_BASENAME_DYNAMIC_PREFIX
-              value: {{ $.Values.gargantua.dynamicBaseNamePrefix | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
