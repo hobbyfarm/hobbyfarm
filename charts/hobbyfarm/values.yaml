@@ -133,9 +133,10 @@ user:
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
 scoreservice:
-  image: hobbyfarm/score-service:v3.1.0
+  image: hobbyfarm/score-service:v3.2.0
   logLevel: "0"
   apiPort: 80
+  replicas: 0
 vm:
   image: hobbyfarm/vm-service:v3.2.0
   replicas: 1
