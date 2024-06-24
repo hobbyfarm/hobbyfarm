@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: score-service
+spec:
+  selector:
+    matchLabels:
+      component: score-service
+  template:
+    metadata:
+      labels:
+        component: score-service
+    spec:
+      containers:
+        - name: gargantua
+          image: {{ $.Values.scoreservice.image }}
+          command: ["app"]
+          args:
+            - "-v=9"
+            - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.scoreservice.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.scoreservice.apiPort | quote }}
+          ports:
+            - containerPort: {{ .Values.scoreservice.apiPort }}
