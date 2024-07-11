@@ -123,6 +123,7 @@ terraform:
   service:
     image: hobbyfarm/terraform-service:v3.2.0
     replicas: 1
+    controllerWorkerThreadCount: 1
     logLevel: "0"
     serviceAccountName: "hobbyfarm-terraform"
 user:
@@ -135,7 +136,6 @@ user:
 vm:
   image: hobbyfarm/vm-service:v3.2.0
   replicas: 1
-  controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vm"
