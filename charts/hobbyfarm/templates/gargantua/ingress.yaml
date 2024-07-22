@@ -172,6 +172,13 @@ spec:
                 number: {{ $.Values.authn.apiPort }}
         # Gargantua: All routes which are not covered by our microservices are routed to the legacy gargantua API server
         - pathType: Prefix
+          path: "/score"
+          backend:
+            service:
+              name: score-service
+              port: 
+                number: 80
+        - pathType: Prefix
           path: "/"
           backend:
             service:
