@@ -1,11 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: vm-service
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ $.Values.vm.replicas }}
-  serviceName: "vm-service"
   selector:
     matchLabels:
       component: vm-service

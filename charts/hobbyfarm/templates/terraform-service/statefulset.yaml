@@ -1,11 +1,12 @@
 {{ if .Values.terraform.enabled }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: terraform-service
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ $.Values.terraform.service.replicas }}
+  serviceName: terraform-service-grpc
   selector:
     matchLabels:
       component: terraform-service
@@ -32,6 +33,10 @@ spec:
               value: {{ .Release.Namespace | quote }}
             - name: GRPC_PORT
               value: "8080"
+            - name: STATEFULSET_NAME
+              value: "terraform-service"
+            - name: CONTROLLER_THREAD_COUNT
+              value: {{ .Values.terraform.service.controllerWorkerThreadCount | quote }}
           ports:
           - containerPort: 8080
           volumeMounts:

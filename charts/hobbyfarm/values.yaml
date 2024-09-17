@@ -1,5 +1,5 @@
 admin:  # defaults for admin service
-  image: hobbyfarm/admin-ui:v3.2.0
+  image: hobbyfarm/admin-ui:v3.2.2
   # configMapName: admin-config
   config:
     title: HobbyFarm Administration
@@ -13,7 +13,7 @@ admin:  # defaults for admin service
     logo: /assets/default/logo.svg
 
 ui:  # defaults for UI service
-  image: hobbyfarm/ui:v3.2.0
+  image: hobbyfarm/ui:v3.2.2
   configMapName: ui-config
   config:
     title: HobbyFarm Learn
@@ -33,78 +33,78 @@ ui:  # defaults for UI service
       # /* Some custom css */
     # }
 accesscode:
-  image: hobbyfarm/accesscode-service:v3.2.0
+  image: hobbyfarm/accesscode-service:v3.2.2
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
-  image: hobbyfarm/authn-service:v3.2.0
+  image: hobbyfarm/authn-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-authn"
 authr:
-  image: hobbyfarm/authr-service:v3.2.0
+  image: hobbyfarm/authr-service:v3.2.2
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-authr"
 conversion:
-  image: hobbyfarm/conversion-service:v3.2.0
+  image: hobbyfarm/conversion-service:v3.2.2
   containerPort: 444
   servicePort: 443  # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
 course:
-  image: hobbyfarm/course-service:v3.2.0
+  image: hobbyfarm/course-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-course"
 dbconfig:
-  image: hobbyfarm/dbconfig-service:v3.2.0
+  image: hobbyfarm/dbconfig-service:v3.2.2
   replicas: 1
   logLevel: "0"
   serviceAccountName: "hobbyfarm-dbconfig"
 environment:
-  image: hobbyfarm/environment-service:v3.2.0
+  image: hobbyfarm/environment-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-environment"
 progress:
-  image: hobbyfarm/progress-service:v3.2.0
+  image: hobbyfarm/progress-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-progress"
 rbac:
-  image: hobbyfarm/rbac-service:v3.2.0
+  image: hobbyfarm/rbac-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-rbac"
   installRBACRoles: false
 scenario:
-  image: hobbyfarm/scenario-service:v3.2.0
+  image: hobbyfarm/scenario-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scenario"
 scheduledevent:
-  image: hobbyfarm/scheduledevent-service:v3.2.0
+  image: hobbyfarm/scheduledevent-service:v3.2.2
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scheduledevent"
 session:
-  image: hobbyfarm/session-service:v3.2.0
+  image: hobbyfarm/session-service:v3.2.2
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-session"
 setting:
-  image: hobbyfarm/setting-service:v3.2.0
+  image: hobbyfarm/setting-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
@@ -121,12 +121,13 @@ terraform:
     tag: "v0.0.13-alpha1"
     threads: 2
   service:
-    image: hobbyfarm/terraform-service:v3.2.0
+    image: hobbyfarm/terraform-service:v3.2.2
     replicas: 1
+    controllerWorkerThreadCount: 1
     logLevel: "0"
     serviceAccountName: "hobbyfarm-terraform"
 user:
-  image: hobbyfarm/user-service:v3.2.0
+  image: hobbyfarm/user-service:v3.2.2
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
@@ -138,35 +139,34 @@ scoreservice:
   apiPort: 80
   replicas: 0
 vm:
-  image: hobbyfarm/vm-service:v3.2.0
+  image: hobbyfarm/vm-service:v3.2.2
   replicas: 1
-  controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vm"
 vmclaim:
-  image: hobbyfarm/vmclaim-service:v3.2.0
+  image: hobbyfarm/vmclaim-service:v3.2.2
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmclaim"
 vmset:
-  image: hobbyfarm/vmset-service:v3.2.0
+  image: hobbyfarm/vmset-service:v3.2.2
   replicas: 1
   controllerWorkerThreadCount: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmset"
 vmtemplate:
-  image: hobbyfarm/vmtemplate-service:v3.2.0
+  image: hobbyfarm/vmtemplate-service:v3.2.2
   replicas: 1
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmtemplate"
 
 gargantua:
-  image: hobbyfarm/gargantua:v3.2.0
+  image: hobbyfarm/gargantua:v3.2.2
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-gargantua"
