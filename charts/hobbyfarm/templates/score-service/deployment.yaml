@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: score-service
 spec:
+  replicas: {{ $.Values.scoreservice.replicas }}
   selector:
     matchLabels:
       component: score-service
