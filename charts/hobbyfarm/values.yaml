@@ -134,7 +134,7 @@ user:
   apiPort: 80
   serviceAccountName: "hobbyfarm-user"
 scoreservice:
-  image: hobbyfarm/score-service:v3.2.5
+  image: hobbyfarm/score-service:master
   logLevel: "0"
   apiPort: 80
   replicas: 0
