@@ -21,7 +21,7 @@ HobbyFarm follows [semantic versioning](https://semver.org/), e.g major.minor.pa
 | Minor | As needed, between majors |
 | Patch | As needed, between minors | 
 
-It is the goal of this project to release **major** versions in the months of March and September of each year. This plan was adopted 03 APR 2023, with a major release scheduled for 31 MAY 2023. Thus the first "on schedule" major release of HobbyFarm will be in SEPT 2023. 
+It is the goal of this project to release **major** versions in the months of March and September of each year. This plan was adopted 03 APR 2023, with a major release scheduled for 31 MAY 2023. Thus, the first "on schedule" major release of HobbyFarm will be in SEPT 2023. 
 
 ## Contributing
 
